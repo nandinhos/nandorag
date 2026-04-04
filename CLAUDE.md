@@ -2,88 +2,194 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+---
 
-**NandoRAG** is a self-hosted RAG (Retrieval-Augmented Generation) tool for querying personal knowledge bases. Documents (PDF, MD, TXT) are imported, chunked, embedded via Ollama, and stored in PostgreSQL with pgvector. Users interact via a Filament 5 admin chat interface.
+## O que é este projeto
 
-Stack: Laravel 13, Filament 5, Pest 4, PostgreSQL + pgvector, `laravel/ai`, Ollama (local, no cloud API).
+DEVORQ é um meta-framework de orquestração de desenvolvimento assistido por LLM. Não é uma aplicação — é um framework de workflow integrado a projetos externos. Implementado em **Bash puro** (4.0+), sem dependências externas além de `git` e `jq`.
 
-## Commands
+## Comandos CLI
 
 ```bash
-# Development server (runs Laravel, queue, logs, Vite concurrently)
-composer dev
+# Fluxo principal
+./bin/devorq init                        # Inicializar e detectar contexto do projeto
+./bin/devorq flow "<intenção>"           # Executar workflow completo
+./bin/devorq context                     # Mostrar contexto detectado
+./bin/devorq checkpoint                  # Criar checkpoint de continuidade
+./bin/devorq skills                      # Listar skills disponíveis com versões
+./bin/devorq agent                       # Mostrar modo de agente ativo
 
-# Run all tests
-composer test
+# Handoff multi-LLM
+./bin/devorq handoff generate            # Gerar spec padronizada para próximo LLM (Gate 4)
+./bin/devorq handoff status              # Status do handoff atual
+./bin/devorq handoff list                # Histórico de handoffs
+./bin/devorq handoff update <status>     # Atualizar status do handoff
 
-# Run a single test file
-php artisan test tests/Feature/ChunkingServiceTest.php
+# Pipeline de aprendizado
+./bin/devorq lessons list                # Listar lições pendentes/validadas/aplicadas
+./bin/devorq lessons validate            # Preparar lições para validação via Context7 (Gate 6)
+./bin/devorq lessons apply <nome>        # Aplicar lição numa skill (Gate 7)
 
-# Run a single test by name
-php artisan test --filter "test name here"
-
-# Code formatting
-./vendor/bin/pint
-
-# Migrations
-php artisan migrate
-
-# Seed admin user (nando@example.com / password)
-php artisan db:seed
+# Versionamento de skills
+./bin/devorq skill rollback <skill> <v>  # Reverter skill para versão anterior
+./bin/devorq skill version <skill> <bump># Criar snapshot de nova versão (patch|minor|major)
+./bin/devorq skill versions <skill>      # Listar versões disponíveis
 ```
 
-## Architecture
-
-### RAG Pipeline
-
-1. **Upload** → `DocumentImportService` extracts text from PDF/MD/TXT, tracking page/line metadata
-2. **Chunk** → `ChunkingService` splits into overlapping fixed-size chunks (default 512 tokens, 50 overlap), recording `source_location` as `p.3-4` (PDF) or `L120-L180` (text)
-3. **Embed** → `EmbeddingService` calls `laravel/ai` Embeddings API against Ollama `nomic-embed-text` (768 dims) and stores vectors in pgvector
-4. **Retrieve** → `RagRetrievalService` embeds the query, runs `whereVectorSimilarTo` with cosine similarity ≥ 0.5, returns top 10 chunks
-5. **Chat** → `ChatAgent` (implements `laravel/ai` `Agent + Conversational`) sends RAG context + conversation history to Ollama `llama3.2:3b`
-
-### Filament Admin Panel (`/admin`)
-
-| Page | Class | Purpose |
-|---|---|---|
-| Document Resource | `Filament/Admin/Resources/Documents/` | CRUD + upload + embedding trigger |
-| Chats | `Filament/Admin/Pages/Chats.php` | Multi-tab AI chat with RAG |
-| Help | `Filament/Admin/Pages/Help.php` | Ollama status + setup guide |
-
-The Chats page uses Livewire computed properties (`#[Computed]`) for reactive chat/message lists. Streaming is handled synchronously (not SSE) — `$isStreaming` is a UI flag only.
-
-### Key Models
-
-- `Document` → has many `DocumentChunk` (via `document_id`)
-- `Chat` → belongs to `User`, optionally scoped to `Document`; has many `ChatMessage`
-- `DocumentChunk` → stores `embedding` as pgvector column; queried via `whereVectorSimilarTo` / `selectVectorDistance`
-
-### Configuration
-
-- `config/rag.php` — all RAG tunables (`chunk_size`, `chunk_overlap`, `similarity_threshold`, `top_k`, `embedding_model`, `embedding_dimensions`, `chat_model`). All overridable via `.env` with `RAG_*` prefix.
-- `config/ai.php` — `laravel/ai` provider config; default provider is `ollama`, pointing to `OLLAMA_BASE_URL`.
-- Uploaded documents are stored at `storage/app/documents/`.
-
-## Environment Setup
-
-Required `.env` additions beyond defaults:
-
-```env
-DB_CONNECTION=pgsql
-DB_DATABASE=nandorag
-DB_USERNAME=nandorag
-DB_PASSWORD=secret
-
-OLLAMA_BASE_URL=http://localhost:11434
-```
-
-Ollama must be running with models pulled:
+**Validar scripts shell:**
 ```bash
-ollama pull nomic-embed-text
-ollama pull llama3.2:3b
+bash -n bin/devorq                  # Syntax check no CLI principal
+bash -n lib/*.sh                    # Syntax check em todos os módulos
+shellcheck bin/devorq               # Linting (requer shellcheck instalado)
+shellcheck lib/*.sh
 ```
 
-## Testing
+**Instalar em outro projeto:**
+```bash
+cp -r .devorq /caminho/do/projeto/
+cp -r bin /caminho/do/projeto/
+chmod +x /caminho/do/projeto/bin/devorq
+```
 
-Tests use Pest 4. Feature tests mock Ollama calls — check existing tests like `EmbeddingServiceTest` and `ChatsPageTest` for mock patterns. The `DocumentImportService` tests use fixture files. Run with `--parallel` for speed.
+## Arquitetura
+
+### Camadas do framework
+
+```
+bin/           → CLI público (entry points para usuários)
+lib/           → Módulos Bash reutilizáveis (lógica interna)
+.devorq/       → Configuração do workflow (agents, skills, rules, state)
+prompts/       → Arquivos de ativação por LLM
+```
+
+### lib/ — Módulos principais
+
+| Arquivo | Responsabilidade |
+|---------|-----------------|
+| `detect.sh` | Detecção de stack (lê composer.json, package.json, requirements.txt) |
+| `core.sh` | Funções utilitárias base |
+| `cli.sh` | Parsing de argumentos do CLI |
+| `orchestration.sh` | Coordenação de fases do workflow |
+| `orchestration/flow.sh` | Engine principal do fluxo |
+| `state.sh` | Leitura/escrita de `.devorq/state/` |
+| `mcp.sh` | Integração com servidores MCP |
+| `feature-lifecycle.sh` | Rastreamento de ciclo de vida de features |
+| `error-recovery.sh` | Recuperação de erros e fallbacks |
+
+### .devorq/ — Configuração de workflow
+
+**`agents/`** — 6 agentes especializados, cada um em `<stack>/SKILL.md`:
+- `general/` → Orquestrador central, detecta stack e delega
+- `laravel/` → Expert TALL Stack (Tailwind, Alpine, Livewire, Laravel)
+- `filament/` → Expert em admin panels com Filament PHP
+- `php/` → PHP puro com padrões PSR e strict types
+- `python/` → Análise de dados, type hints, pytest
+- `shell/` → Bash scripting com `set -eEo pipefail`
+
+**`skills/`** — 17 skills de workflow, cada uma em `<nome>/SKILL.md` + `CHANGELOG.md` + `VERSIONS/`:
+- `scope-guard/` → Gera contratos FAZER/NÃO FAZER/ARQUIVOS/DONE_CRITERIA
+- `pre-flight/` → Valida tipos, enums e dependências antes de codar (chama constraint-loader)
+- `env-context/` → Detecta stack, LLM, runtime, banco de dados
+- `quality-gate/` → Checklist pré-commit (testes, lint, N+1, escopo, integrity-guardian)
+- `session-audit/` → Métricas de eficiência + /learned-lesson obrigatório no encerramento
+- `tdd/` → Ciclo RED → GREEN → REFACTOR
+- `schema-validate/` → Integridade de schema de banco
+- `spec-export/` → Handoff spec para troca de LLM
+- `systematic-debugging/` → Investigação metódica de bugs
+- `code-review/` → Revisão baseada em Clean Code
+- `brainstorming/` → Fase de design/exploração
+- `learned-lesson/` → Documenta lições para sessões futuras (obrigatório pós-session-audit)
+- `handoff/` → Gera spec padronizada para transferência entre LLMs (Gate 4)
+- `constraint-loader/` → Carrega artefatos por tipo de task antes de implementar
+- `integrity-guardian/` → Valida padrões Livewire/Alpine em Blade (integrado ao quality-gate)
+- `spec/` → Geração de especificação com contrato detalhado (deve preceder /break)
+- `break/` → Decompõe tarefas complexas em subtarefas manejáveis
+
+**`rules/stack/`** — Regras por stack:
+- `laravel-tall.md` → Proibições específicas (x-show em Livewire, eager loading obrigatório, etc.)
+- `python.md` → Type hints, docstrings, pytest
+- `php.md` → strict_types, PSR
+
+**`state/`** — Persistência local (git-ignored):
+- `context.json` → Stack, LLM, runtime detectados
+- `contracts/` → Contratos de /scope-guard
+- `checkpoints/` → Snapshots para continuidade
+- `session-audits/` → Histórico de métricas
+- `specs/` → Specs exportadas
+
+### Como agents e skills se relacionam
+
+O agente detectado pelo `general/SKILL.md` carrega automaticamente as skills relevantes para a stack. Skills são independentes de agente — podem ser chamadas diretamente como slash commands. O CLI `bin/devorq flow` executa o pipeline completo coordenado pelo `orchestration/flow.sh`.
+
+## Fluxo Obrigatório v2.1 (ao ativar qualquer `/devorq`)
+
+```
+1. /env-context          → Detectar stack e constraints (automático)
+2. /spec                 → Gerar contrato detalhado → [Gate 1]
+3. /break                → Decompor se complexo → [opcional]
+4. /pre-flight           → Validar tipos, enums e schema → [Gate 2]
+5. handoff generate      → Spec para próximo LLM → [Gate 4] (se trocar LLM)
+6. tdd                   → RED → GREEN → REFACTOR
+7. /quality-gate         → Checklist pré-commit (OBRIGATÓRIO) → [Gate 3]
+8. /session-audit        → Métricas (OBRIGATÓRIO)
+9. /learned-lesson       → Capturar lições (OBRIGATÓRIO) → [Gate 5]
+10. checkpoint           → Para continuidade
+```
+
+> **Regra v2.1**: Antes de enviar sub-tarefas ou pacotes de Handoff para camada subordinada, use **obrigatoriamente** `/spec` seguido de `/break`.
+
+**Os 5 Gates** — pausam o fluxo para aprovação explícita do usuário:
+- Gate 1: contrato de escopo | Gate 2: pre-flight | Gate 3: quality-gate
+- Gate 4: handoff | Gates 5-7: pipeline de aprendizado (lição → Context7 → skill)
+
+## Comandos Slash Disponíveis
+
+| Comando | Ativa |
+|---------|-------|
+| `/devorq` | Fluxo completo |
+| `/devorq-laravel` | Modo Laravel TALL |
+| `/devorq-shell` | Modo Shell/Bash |
+| `/devorq-python` | Modo Python |
+| `/devorq-filament` | Modo Filament |
+| `/devorq-start` | Inicializar projeto |
+| `/devorq-checkpoint` | Criar checkpoint |
+| `/devorq-audit` | Auditoria de sessão |
+
+## Regras de Ouro
+
+1. **SEMPRE** usar /scope-guard antes de qualquer código
+2. **SEMPRE** executar /quality-gate antes de commit
+3. **SEMPRE** fazer /session-audit + /learned-lesson ao final da sessão
+4. **SEMPRE** usar `handoff generate` antes de trocar de LLM
+5. **NUNCA** pular gates de validação
+6. **SEMPRE** criar checkpoint antes de interromper
+
+## Versionamento de Skills
+
+Toda skill usa semver: `PATCH` para correções, `MINOR` para lições incorporadas, `MAJOR` para reescrita.
+
+```bash
+./bin/devorq skill version scope-guard minor   # cria VERSIONS/vX.Y.0.md
+./bin/devorq skill rollback scope-guard v1.0.0 # reverte SKILL.md
+```
+
+## Pipeline de Auto-Aprendizado
+
+```
+/learned-lesson → [Gate 5] → lessons validate (Context7) → [Gate 6] → lessons apply → [Gate 7] → skill versionada
+```
+
+## Adicionando novos agentes ou skills
+
+- Novos agentes: criar `agents/<nome>/SKILL.md` seguindo o padrão dos existentes
+- Novas skills: criar `skills/<nome>/SKILL.md` com seções de ativação e instruções
+- Registrar slash commands novos em `SLASH_COMMANDS.md`
+- Atualizar `prompts/claude.md` e outros prompts se a skill deve ser auto-carregada
+
+## MCP Integration
+
+O projeto usa Context7 para validar contra documentação oficial. Configurado em `.mcp.json`. Use para confirmar sintaxe de APIs, versões de frameworks, existência de métodos antes de gerar código.
+
+---
+
+> Documentação completa: https://github.com/nandinhos/devorq
