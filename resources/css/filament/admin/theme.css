@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 @import 'tailwindcss';
 
-/* Required by filament */
 @import '../../../../vendor/filament/filament/resources/css/index.css';
 @import '../../../../vendor/filament/support/resources/css/index.css';
 @import '../../../../vendor/filament/actions/resources/css/index.css';
@@ -15,116 +16,464 @@
 @source '../../../../resources/views/filament/admin/**/*';
 
 @theme {
-    --color-cream: #F0EAD6;
-    --color-cream-dark: #E5E0CC;
-    --color-yellow: #FDE047;
-    --color-teal: #22D3EE;
-    --color-magenta: #E879F9;
+    --font-heading: 'Oswald', 'Impact', ui-sans-serif;
+    --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace;
+    --font-sans: 'JetBrains Mono', 'Space Mono', ui-monospace;
+
+    --color-neo-bg: #F0EAD6;
+    --color-neo-black: #000000;
+    --color-neo-white: #FFFFFF;
+    --color-neo-teal: #22D3EE;
+    --color-neo-magenta: #E879F9;
+    --color-neo-yellow: #FACC15;
+    --color-neo-salmon: #FDA4AF;
+    --color-neo-green: #00FF7F;
+    --color-neo-purple: #9370DB;
+
+    --shadow-neo-sm: 2px 2px 0px 0px #000000;
+    --shadow-neo: 4px 4px 0px 0px #000000;
+    --shadow-neo-lg: 8px 8px 0px 0px #000000;
+    --shadow-neo-xl: 12px 12px 0px 0px #000000;
+}
+
+:root {
+    --color-primary-50: #ecfeff;
+    --color-primary-100: #cffafe;
+    --color-primary-200: #a5f3fc;
+    --color-primary-300: #67e8f9;
+    --color-primary-400: #22d3ee;
+    --color-primary-500: #06b6d4;
+    --color-primary-600: #0891b2;
+    --color-primary-700: #0e7490;
+    --color-primary-800: #155e75;
+    --color-primary-900: #164e63;
+    --color-primary-950: #083344;
+    --font-heading: 'Oswald', 'Impact', ui-sans-serif;
+    --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace;
 }
 
 @layer base {
-    :root {
-        --color-primary-50: #ecfeff;
-        --color-primary-100: #cffafe;
-        --color-primary-200: #a5f3fc;
-        --color-primary-300: #67e8f9;
-        --color-primary-400: #22d3ee;
-        --color-primary-500: #06b6d4;
-        --color-primary-600: #0891b2;
-        --color-primary-700: #0e7490;
-        --color-primary-800: #155e75;
-        --color-primary-900: #164e63;
-        --color-primary-950: #083344;
+    body {
+        background-color: var(--color-neo-bg);
+        background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.5px, transparent 1.5px);
+        background-size: 22px 22px;
+        color: var(--color-neo-black);
+        font-family: var(--font-mono);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Neo-brutalist base styles */
-    .fi-layout {
-        background-color: #F0EAD6;
+    h1, h2, h3, h4, h5, h6, .font-heading {
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        font-weight: 700;
     }
+
+    ::selection {
+        background-color: var(--color-neo-teal);
+        color: var(--color-neo-black);
+    }
+
+    .fi-layout { background-color: transparent; }
+    .fi-main { background-color: transparent; }
+    .fi-page { background-color: transparent !important; }
 
     .fi-sidebar {
-        background-color: #E5E0CC;
+        background-color: var(--color-neo-bg) !important;
+        border-right: 4px solid var(--color-neo-black) !important;
     }
 
-    .fi-main {
-        background-color: #F0EAD6;
+    .fi-sidebar-header {
+        border-bottom: none !important;
+        padding: 1rem !important;
     }
 
-    .fi-header {
-        background-color: #fff;
+    .fi-sidebar-brand {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        font-size: 1.25rem !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-sidebar-nav { 
+        padding: 1rem !important; 
+        gap: 0.75rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .fi-sidebar-group {
+        margin-bottom: 1rem !important;
+    }
+
+    .fi-sidebar-group-title {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.6rem !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+        padding: 0.5rem 0.75rem !important;
+        opacity: 0.6 !important;
+    }
+
+    .fi-sidebar-item-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.75rem !important;
+        padding: 0.875rem 1rem !important;
+        background-color: var(--color-neo-white) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        border-radius: 0 !important;
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.08em !important;
+        transition: all 0.15s ease !important;
+        color: var(--color-neo-black) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        position: relative !important;
+        margin-bottom: 0.5rem !important;
+        min-height: 48px !important;
+    }
+
+    .fi-sidebar-item-btn:hover {
+        box-shadow: 7px 7px 0px 0px var(--color-neo-black) !important;
+        background-color: var(--color-neo-yellow) !important;
+    }
+
+    .fi-sidebar-item-active .fi-sidebar-item-btn,
+    .fi-sidebar-item-active.fi-sidebar-item .fi-sidebar-item-btn,
+    a.fi-sidebar-item-active .fi-sidebar-item-btn,
+    [data-active="true"] .fi-sidebar-item-btn,
+    [class*="sidebar-item-active"] .fi-sidebar-item-btn,
+    .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
+    .fi-sidebar-item.is-active .fi-sidebar-item-btn,
+    .fi-sidebar-item.active .fi-sidebar-item-btn,
+    li.fi-sidebar-item.active > button,
+    li.fi-sidebar-item.is-active > button,
+    .fi-sidebar-item-active > button {
+        background-color: var(--color-neo-yellow) !important;
+        background: var(--color-neo-yellow) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        color: var(--color-neo-black) !important;
+        font-weight: 700 !important;
+    }
+
+    /* Force override for any inline styles or dynamic classes */
+    .fi-sidebar .fi-sidebar-nav .fi-sidebar-item button[aria-current="page"] {
+        background-color: var(--color-neo-yellow) !important;
+        background: var(--color-neo-yellow) !important;
+    }
+
+    .fi-sidebar-item-active .fi-sidebar-item-btn::before {
+        content: '' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 6px !important;
+        background-color: var(--color-neo-black) !important;
+    }
+
+    .fi-sidebar-item-active .fi-sidebar-item-btn:hover {
+        transform: translate(-3px, -3px) !important;
+        box-shadow: 7px 7px 0px 0px var(--color-neo-black) !important;
+    }
+
+    .fi-page-header {
+        background-color: var(--color-neo-white);
+        border-bottom: 4px solid var(--color-neo-black);
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .fi-page-heading {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .fi-breadcrumbs {
+        font-family: var(--font-mono) !important;
+        font-size: 0.75rem !important;
     }
 }
 
 @layer components {
-    /* Neo-brutalist cards */
-    .fi-card {
-        border: 2px solid #000;
-        box-shadow: 4px 4px 0 #000;
-    }
+    .neo-border { border: 4px solid var(--color-neo-black); }
+    .neo-border-sm { border: 2px solid var(--color-neo-black); }
 
-    /* Neo-brutalist buttons */
-    .fi-button {
-        border: 2px solid #000;
-        box-shadow: 3px 3px 0 #000;
+    .shadow-neo-sm { box-shadow: 2px 2px 0px 0px var(--color-neo-black); }
+    .shadow-neo { box-shadow: 4px 4px 0px 0px var(--color-neo-black); }
+    .shadow-neo-lg { box-shadow: 8px 8px 0px 0px var(--color-neo-black); }
+    .shadow-neo-xl { box-shadow: 12px 12px 0px 0px var(--color-neo-black); }
+
+    .btn-neo, .card-neo, .input-neo {
         transition: all 0.1s ease;
+        cursor: pointer;
     }
 
-    .fi-button:hover {
-        box-shadow: 5px 5px 0 #000;
-        transform: translate(-2px, -2px);
+    .btn-neo:active, .card-neo:active {
+        transform: translate(4px, 4px);
+        box-shadow: 0px 0px 0px 0px var(--color-neo-black) !important;
     }
 
-    .fi-button:active {
-        box-shadow: 1px 1px 0 #000;
-        transform: translate(2px, 2px);
+    .fi-card {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        transition: all 0.1s ease !important;
+        border-radius: 0 !important;
     }
 
-    /* Neo-brutalist inputs */
+    .fi-card:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 8px 8px 0px 0px var(--color-neo-black) !important;
+    }
+
+    .fi-btn {
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: 3px 3px 0px 0px var(--color-neo-black) !important;
+        transition: all 0.1s ease !important;
+        font-family: var(--font-heading) !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        border-radius: 0 !important;
+    }
+
+    .fi-btn:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 5px 5px 0px 0px var(--color-neo-black) !important;
+    }
+
+    .fi-btn:active {
+        transform: translate(2px, 2px) !important;
+        box-shadow: 1px 1px 0px 0px var(--color-neo-black) !important;
+    }
+
+    .fi-btn-primary {
+        background-color: var(--color-neo-teal) !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-btn-secondary {
+        background-color: var(--color-neo-white) !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-btn-danger {
+        background-color: var(--color-neo-salmon) !important;
+        color: var(--color-neo-black) !important;
+    }
+
     .fi-input {
-        border: 2px solid #000;
-        box-shadow: 2px 2px 0 #000;
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: 2px 2px 0px 0px var(--color-neo-black) !important;
+        border-radius: 0 !important;
+        font-family: var(--font-mono) !important;
     }
 
     .fi-input:focus {
-        --tw-ring-offset-shadow: 0 0 0;
-        --tw-ring-shadow: 0 0 0;
-        box-shadow: 4px 4px 0 #000;
+        border-color: var(--color-neo-magenta) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        outline: none !important;
     }
 
-    /* Neo-brutalist table */
+    .fi-input:hover {
+        border-color: var(--color-neo-magenta) !important;
+    }
+
+    .fi-label {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+    }
+
     .fi-table {
-        border: 2px solid #000;
+        border: 4px solid var(--color-neo-black) !important;
+        border-radius: 0 !important;
     }
 
     .fi-table th {
-        background-color: #E5E0CC;
-        border-bottom: 2px solid #000;
+        background-color: var(--color-neo-bg) !important;
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
     }
 
     .fi-table td {
-        border-bottom: 1px solid #000;
+        border-bottom: 2px solid var(--color-neo-black) !important;
+        font-family: var(--font-mono) !important;
+        font-size: 0.875rem !important;
     }
 
-    /* Neo-brutalist badge */
+    .fi-table tr:hover td {
+        background-color: var(--color-neo-white) !important;
+    }
+
     .fi-badge {
-        border: 2px solid #000;
+        border: 2px solid var(--color-neo-black) !important;
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        border-radius: 0 !important;
+        font-weight: 600 !important;
     }
 
-    /* Neo-brutalist dropdown */
     .fi-dropdown {
-        border: 2px solid #000;
-        box-shadow: 4px 4px 0 #000;
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        border-radius: 0 !important;
     }
 
-    /* Neo-brutalist modal */
     .fi-modal {
-        border: 2px solid #000;
-        box-shadow: 8px 8px 0 #000;
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: 8px 8px 0px 0px var(--color-neo-black) !important;
+        border-radius: 0 !important;
     }
 
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 {
-        text-transform: uppercase;
+    .fi-modal-header {
+        border-bottom: 2px solid var(--color-neo-black) !important;
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+    }
+
+    .fi-tabs {
+        border-bottom: 4px solid var(--color-neo-black) !important;
+    }
+
+    .fi-tabs-item {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.05em !important;
+        border: 2px solid transparent !important;
+    }
+
+    .fi-tabs-item-active {
+        border: 2px solid var(--color-neo-black) !important;
+        border-bottom: none !important;
+        background-color: var(--color-neo-teal) !important;
+    }
+
+    .sep-stripe {
+        height: 8px;
+        background-image: repeating-linear-gradient(
+            90deg,
+            var(--color-neo-black) 0px,
+            var(--color-neo-black) 6px,
+            var(--color-neo-white) 6px,
+            var(--color-neo-white) 12px
+        );
+        border-top: 2px solid var(--color-neo-black);
+        border-bottom: 2px solid var(--color-neo-black);
+    }
+
+    .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        font-weight: 700;
         letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .section-tag .num {
+        background: var(--color-neo-black);
+        color: var(--color-neo-white);
+        padding: 0.1rem 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .fi-section {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        border-radius: 0 !important;
+    }
+
+    .fi-section-title {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .fi-empty-state {
+        border: 2px dashed var(--color-neo-black) !important;
+        padding: 2rem !important;
+    }
+
+    .fi-empty-state-title {
+        font-family: var(--font-heading) !important;
+        text-transform: uppercase !important;
     }
 }
+
+@layer utilities {
+    .bg-neo-bg { background-color: var(--color-neo-bg); }
+    .bg-neo-teal { background-color: var(--color-neo-teal); }
+    .bg-neo-magenta { background-color: var(--color-neo-magenta); }
+    .bg-neo-yellow { background-color: var(--color-neo-yellow); }
+    .bg-neo-green { background-color: var(--color-neo-green); }
+    .bg-neo-salmon { background-color: var(--color-neo-salmon); }
+    .bg-neo-purple { background-color: var(--color-neo-purple); }
+    .bg-neo-white { background-color: var(--color-neo-white); }
+
+    .text-neo-teal { color: var(--color-neo-teal); }
+    .text-neo-magenta { color: var(--color-neo-magenta); }
+    .text-neo-yellow { color: var(--color-neo-yellow); }
+    .text-neo-green { color: var(--color-neo-green); }
+
+    .border-neo-teal { border-color: var(--color-neo-teal); }
+    .border-neo-magenta { border-color: var(--color-neo-magenta); }
+    .border-neo-yellow { border-color: var(--color-neo-yellow); }
+    .border-neo-green { border-color: var(--color-neo-green); }
+
+    .font-body { font-family: var(--font-mono); }
+    .font-heading { font-family: var(--font-heading); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+}
+
+@keyframes bounce-in {
+    0% { transform: scale(0.9); opacity: 0; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes fade-in-up {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animate-wiggle { animation: wiggle 0.3s ease-in-out; }
+.animate-bounce-in { animation: bounce-in 0.5s ease-out forwards; }
+.animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+.animate-shake { animation: shake 0.5s ease-in-out; }
+.animate-pop { animation: pop 0.3s ease-in-out; }

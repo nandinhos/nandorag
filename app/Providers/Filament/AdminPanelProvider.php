@@ -2,12 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Admin\Pages\CustomDashboard;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -27,7 +27,6 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->authGuard('web')
-            ->login()
             ->font('Oswald', provider: GoogleFontProvider::class)
             ->colors([
                 'primary' => [
@@ -66,13 +65,12 @@ class AdminPanelProvider extends PanelProvider
                 for: 'App\\Filament\\Admin\\Pages'
             )
             ->pages([
-                Dashboard::class,
+                CustomDashboard::class,
             ])
             ->discoverWidgets(
                 in: app_path('Filament/Admin/Widgets'),
                 for: 'App\\Filament\\Admin\\Widgets'
             )
-            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
