@@ -2,18 +2,19 @@
 
 namespace App\Services;
 
+use App\Contracts\EmbeddingEngine;
 use App\Enums\DocumentStatus;
 use App\Models\Document;
 use App\Models\DocumentChunk;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Laravel\Ai\Embeddings;
 
 class EmbeddingService
 {
     public function __construct(
         private DocumentImportService $importService,
         private ChunkingService $chunkingService,
+        private EmbeddingEngine $embeddingEngine,
     ) {}
 
     public function processDocument(Document $document): void
@@ -71,9 +72,6 @@ class EmbeddingService
      */
     public function generateEmbedding(string $text): array
     {
-        $response = Embeddings::for([$text])
-            ->generate();
-
-        return $response->first();
+        return $this->embeddingEngine->generate($text);
     }
 }

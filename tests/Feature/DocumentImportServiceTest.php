@@ -1,9 +1,11 @@
 <?php
 
 use App\Services\DocumentImportService;
+use App\Services\Parsers\PdfDocumentParser;
+use App\Services\Parsers\TextDocumentParser;
 
 test('extracts text from a text file', function () {
-    $service = new DocumentImportService();
+    $service = new DocumentImportService([new TextDocumentParser]);
 
     $tmpFile = tempnam(sys_get_temp_dir(), 'test_');
     file_put_contents($tmpFile, "Line one\nLine two\nLine three");
@@ -20,9 +22,9 @@ test('extracts text from a text file', function () {
 });
 
 test('extracts text from a markdown file', function () {
-    $service = new DocumentImportService();
+    $service = new DocumentImportService([new TextDocumentParser]);
 
-    $tmpFile = tempnam(sys_get_temp_dir(), 'test_') . '.md';
+    $tmpFile = tempnam(sys_get_temp_dir(), 'test_').'.md';
     file_put_contents($tmpFile, "# Title\n\nSome content here.");
 
     $result = $service->extract($tmpFile, 'text/markdown');
@@ -41,7 +43,7 @@ test('extracts text from a PDF file with page tracking', function () {
         $this->markTestSkipped('No test PDF files found in pdf_test/');
     }
 
-    $service = new DocumentImportService();
+    $service = new DocumentImportService([new PdfDocumentParser, new TextDocumentParser]);
     $result = $service->extract($pdfFiles[0], 'application/pdf');
 
     expect($result['text'])->not->toBeEmpty();

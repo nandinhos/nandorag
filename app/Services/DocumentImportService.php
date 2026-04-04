@@ -2,80 +2,41 @@
 
 namespace App\Services;
 
-use Spatie\PdfToText\Pdf;
+use App\Contracts\DocumentParser;
+use App\Services\Parsers\TextDocumentParser;
+use Exception;
 
 class DocumentImportService
 {
     /**
-     * Extract text from a file with source location metadata.
+     * @param  array<int, DocumentParser>  $parsers
+     */
+    public function __construct(
+        private array $parsers
+    ) {}
+
+    /**
+     * Extract text from a file by delegating to the appropriate parser.
      *
-     * @return array{text: string, pages: array<int, array{page: int, text: string, start_line: int, end_line: int}>}
+     * @return array{text: string, pages: array<int, array{page: int|null, text: string, start_line: int, end_line: int}>}
+     *
+     * @throws Exception
      */
     public function extract(string $filePath, string $mimeType): array
     {
-        return match ($mimeType) {
-            'application/pdf' => $this->extractFromPdf($filePath),
-            default => $this->extractFromText($filePath),
-        };
-    }
-
-    private function extractFromPdf(string $filePath): array
-    {
-        $pageCount = $this->getPdfPageCount($filePath);
-        $pages = [];
-        $allText = '';
-        $currentLine = 1;
-
-        for ($page = 1; $page <= $pageCount; $page++) {
-            $pageText = Pdf::getText($filePath, options: [
-                "-f {$page}",
-                "-l {$page}",
-                '-layout',
-            ]);
-
-            $lineCount = substr_count($pageText, "\n") + 1;
-
-            $pages[] = [
-                'page' => $page,
-                'text' => $pageText,
-                'start_line' => $currentLine,
-                'end_line' => $currentLine + $lineCount - 1,
-            ];
-
-            $allText .= $pageText . "\n";
-            $currentLine += $lineCount;
+        foreach ($this->parsers as $parser) {
+            if ($parser->supports($mimeType)) {
+                return $parser->parse($filePath, $mimeType);
+            }
         }
 
-        return [
-            'text' => trim($allText),
-            'pages' => $pages,
-        ];
-    }
+        // Fallback to text parser if no specific match is found
+        foreach ($this->parsers as $parser) {
+            if ($parser instanceof TextDocumentParser) {
+                return $parser->parse($filePath, $mimeType);
+            }
+        }
 
-    private function extractFromText(string $filePath): array
-    {
-        $text = file_get_contents($filePath);
-        $lines = explode("\n", $text);
-
-        return [
-            'text' => $text,
-            'pages' => [
-                [
-                    'page' => null,
-                    'text' => $text,
-                    'start_line' => 1,
-                    'end_line' => count($lines),
-                ],
-            ],
-        ];
-    }
-
-    private function getPdfPageCount(string $filePath): int
-    {
-        $fullText = Pdf::getText($filePath);
-        // pdftotext inserts form feed characters between pages
-        $pages = preg_split('/\f/', $fullText);
-
-        return max(1, count(array_filter($pages, fn ($p) => trim($p) !== '')));
+        throw new Exception("No document parser found for mime type: {$mimeType}");
     }
 }
