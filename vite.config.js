@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/css/filament/admin/theme.css', 'resources/js/app.js'],
             refresh: true,
         }),
         tailwindcss(),
@@ -13,6 +13,15 @@ export default defineConfig({
     server: {
         watch: {
             ignored: ['**/storage/framework/views/**'],
+        },
+    },
+    css: {
+        preprocessorOptions: {
+            css: {
+                import: [
+                    'url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap")',
+                ],
+            },
         },
     },
 });

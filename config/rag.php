@@ -2,7 +2,7 @@
 
 return [
 
-    'chunk_size' => (int) env('RAG_CHUNK_SIZE', 512),
+    'chunk_size' => (int) env('RAG_CHUNK_SIZE', 256),
 
     'chunk_overlap' => (int) env('RAG_CHUNK_OVERLAP', 50),
 

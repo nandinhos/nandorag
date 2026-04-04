@@ -23,7 +23,6 @@ class RagRetrievalService
                 $queryEmbedding,
                 minSimilarity: config('rag.similarity_threshold', 0.5),
             )
-            ->selectVectorDistance('embedding', $queryEmbedding, as: 'distance')
             ->limit(config('rag.top_k', 10));
 
         if ($documentId) {
@@ -71,7 +70,6 @@ class RagRetrievalService
     private function generateQueryEmbedding(string $query): array
     {
         $response = Embeddings::for([$query])
-            ->dimensions(config('rag.embedding_dimensions', 768))
             ->generate();
 
         return $response->first();

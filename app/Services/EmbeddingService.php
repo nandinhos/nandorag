@@ -6,6 +6,7 @@ use App\Enums\DocumentStatus;
 use App\Models\Document;
 use App\Models\DocumentChunk;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Ai\Embeddings;
 
 class EmbeddingService
@@ -21,7 +22,7 @@ class EmbeddingService
 
         try {
             $result = $this->importService->extract(
-                storage_path("app/documents/{$document->file_path}"),
+                Storage::disk('local')->path($document->file_path),
                 $document->mime_type,
             );
 
@@ -34,7 +35,16 @@ class EmbeddingService
             );
 
             foreach ($chunks as $chunkData) {
-                $embedding = $this->generateEmbedding($chunkData['content']);
+                $chunkText = $chunkData['content'];
+
+                if (strlen($chunkText) > 2000) {
+                    $chunkText = substr($chunkText, 0, 2000);
+                }
+
+                $chunkText = mb_convert_encoding($chunkText, 'UTF-8', 'UTF-8');
+                $chunkText = preg_replace('/[\x00-\x1F\x7F]/u', '', $chunkText);
+
+                $embedding = $this->generateEmbedding($chunkText);
 
                 DocumentChunk::create([
                     'document_id' => $document->id,
@@ -62,7 +72,6 @@ class EmbeddingService
     public function generateEmbedding(string $text): array
     {
         $response = Embeddings::for([$text])
-            ->dimensions(config('rag.embedding_dimensions', 768))
             ->generate();
 
         return $response->first();

@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+/* Required by filament */
+@import '../../../../vendor/filament/filament/resources/css/index.css';
+@import '../../../../vendor/filament/support/resources/css/index.css';
+@import '../../../../vendor/filament/actions/resources/css/index.css';
+@import '../../../../vendor/filament/forms/resources/css/index.css';
+@import '../../../../vendor/filament/schemas/resources/css/index.css';
+@import '../../../../vendor/filament/tables/resources/css/index.css';
+@import '../../../../vendor/filament/infolists/resources/css/index.css';
+@import '../../../../vendor/filament/notifications/resources/css/index.css';
+@import '../../../../vendor/filament/widgets/resources/css/index.css';
+
+@source '../../../../app/Filament/Admin/**/*';
+@source '../../../../resources/views/filament/admin/**/*';
+
+@theme {
+    --color-cream: #F0EAD6;
+    --color-cream-dark: #E5E0CC;
+    --color-yellow: #FDE047;
+    --color-teal: #22D3EE;
+    --color-magenta: #E879F9;
+}
+
+@layer base {
+    :root {
+        --color-primary-50: #ecfeff;
+        --color-primary-100: #cffafe;
+        --color-primary-200: #a5f3fc;
+        --color-primary-300: #67e8f9;
+        --color-primary-400: #22d3ee;
+        --color-primary-500: #06b6d4;
+        --color-primary-600: #0891b2;
+        --color-primary-700: #0e7490;
+        --color-primary-800: #155e75;
+        --color-primary-900: #164e63;
+        --color-primary-950: #083344;
+    }
+
+    /* Neo-brutalist base styles */
+    .fi-layout {
+        background-color: #F0EAD6;
+    }
+
+    .fi-sidebar {
+        background-color: #E5E0CC;
+    }
+
+    .fi-main {
+        background-color: #F0EAD6;
+    }
+
+    .fi-header {
+        background-color: #fff;
+    }
+}
+
+@layer components {
+    /* Neo-brutalist cards */
+    .fi-card {
+        border: 2px solid #000;
+        box-shadow: 4px 4px 0 #000;
+    }
+
+    /* Neo-brutalist buttons */
+    .fi-button {
+        border: 2px solid #000;
+        box-shadow: 3px 3px 0 #000;
+        transition: all 0.1s ease;
+    }
+
+    .fi-button:hover {
+        box-shadow: 5px 5px 0 #000;
+        transform: translate(-2px, -2px);
+    }
+
+    .fi-button:active {
+        box-shadow: 1px 1px 0 #000;
+        transform: translate(2px, 2px);
+    }
+
+    /* Neo-brutalist inputs */
+    .fi-input {
+        border: 2px solid #000;
+        box-shadow: 2px 2px 0 #000;
+    }
+
+    .fi-input:focus {
+        --tw-ring-offset-shadow: 0 0 0;
+        --tw-ring-shadow: 0 0 0;
+        box-shadow: 4px 4px 0 #000;
+    }
+
+    /* Neo-brutalist table */
+    .fi-table {
+        border: 2px solid #000;
+    }
+
+    .fi-table th {
+        background-color: #E5E0CC;
+        border-bottom: 2px solid #000;
+    }
+
+    .fi-table td {
+        border-bottom: 1px solid #000;
+    }
+
+    /* Neo-brutalist badge */
+    .fi-badge {
+        border: 2px solid #000;
+    }
+
+    /* Neo-brutalist dropdown */
+    .fi-dropdown {
+        border: 2px solid #000;
+        box-shadow: 4px 4px 0 #000;
+    }
+
+    /* Neo-brutalist modal */
+    .fi-modal {
+        border: 2px solid #000;
+        box-shadow: 8px 8px 0 #000;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+}

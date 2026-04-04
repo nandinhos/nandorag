@@ -35,16 +35,24 @@ class DocumentForm
                             ->hiddenOn('edit')
                             ->live()
                             ->afterStateUpdated(function ($state, callable $set) {
-                                if ($state) {
-                                    $filename = is_array($state)
-                                        ? (array_values($state)[0] ?? null)?->getClientOriginalName()
-                                        : $state->getClientOriginalName();
+                                if (! $state) {
+                                    return;
+                                }
 
-                                    if ($filename) {
-                                        $set('filename', $filename);
-                                        $set('original_filename', $filename);
-                                        $set('tags', [$filename]);
-                                    }
+                                $file = is_array($state)
+                                    ? (array_values($state)[0] ?? null)
+                                    : $state;
+
+                                if (! is_object($file) || ! method_exists($file, 'getClientOriginalName')) {
+                                    return;
+                                }
+
+                                $filename = $file->getClientOriginalName();
+
+                                if ($filename) {
+                                    $set('filename', $filename);
+                                    $set('original_filename', $filename);
+                                    $set('tags', [$filename]);
                                 }
                             }),
 
