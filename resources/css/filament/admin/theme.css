@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+/**
+ * NandoRAG — Neo-Brutalist Theme for Filament v5
+ * Design Kit: /docs/design/neo-brutalist/
+ *
+ * Tokens: cream bg #F0EAD6 | teal #22D3EE | yellow #FACC15 | magenta #E879F9
+ *         green #00FF7F | salmon #FDA4AF | purple #9370DB | black #000
+ * Typography: Oswald (headings) + Space Mono (body/mono)
+ * Shadow: hard offset — no blur, no spread (4px 4px 0 #000)
+ * Radius: 0 everywhere
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import 'tailwindcss';
 
@@ -12,32 +23,39 @@
 @import '../../../../vendor/filament/notifications/resources/css/index.css';
 @import '../../../../vendor/filament/widgets/resources/css/index.css';
 
+/* ─── Source scanning ─────────────────────────────────────────────────────── */
 @source '../../../../app/Filament/Admin/**/*';
 @source '../../../../resources/views/filament/admin/**/*';
 
+/* ─── Design tokens ───────────────────────────────────────────────────────── */
 @theme {
     --font-heading: 'Oswald', 'Impact', ui-sans-serif;
-    --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace;
-    --font-sans: 'JetBrains Mono', 'Space Mono', ui-monospace;
+    --font-mono:    'Space Mono', ui-monospace;
+    --font-sans:    'Space Mono', ui-monospace;
 
-    --color-neo-bg: #F0EAD6;
-    --color-neo-black: #000000;
-    --color-neo-white: #FFFFFF;
-    --color-neo-teal: #22D3EE;
+    /* Neo-brutalist palette */
+    --color-neo-bg:      #F0EAD6;
+    --color-neo-black:   #000000;
+    --color-neo-white:   #FFFFFF;
+    --color-neo-teal:    #22D3EE;
     --color-neo-magenta: #E879F9;
-    --color-neo-yellow: #FACC15;
-    --color-neo-salmon: #FDA4AF;
-    --color-neo-green: #00FF7F;
-    --color-neo-purple: #9370DB;
+    --color-neo-yellow:  #FACC15;
+    --color-neo-salmon:  #FDA4AF;
+    --color-neo-green:   #00FF7F;
+    --color-neo-purple:  #9370DB;
 
-    --shadow-neo-sm: 2px 2px 0px 0px #000000;
-    --shadow-neo: 4px 4px 0px 0px #000000;
+    /* Hard offset shadows — no blur */
+    --shadow-neo-xs: 2px 2px 0px 0px #000000;
+    --shadow-neo-sm: 3px 3px 0px 0px #000000;
+    --shadow-neo:    4px 4px 0px 0px #000000;
     --shadow-neo-lg: 8px 8px 0px 0px #000000;
     --shadow-neo-xl: 12px 12px 0px 0px #000000;
 }
 
+/* ─── Filament primary color → teal scale ─────────────────────────────────── */
 :root {
-    --color-primary-50: #ecfeff;
+    /* Primary = teal */
+    --color-primary-50:  #ecfeff;
     --color-primary-100: #cffafe;
     --color-primary-200: #a5f3fc;
     --color-primary-300: #67e8f9;
@@ -48,11 +66,71 @@
     --color-primary-800: #155e75;
     --color-primary-900: #164e63;
     --color-primary-950: #083344;
-    --font-heading: 'Oswald', 'Impact', ui-sans-serif;
-    --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace;
+
+    /* Danger = magenta */
+    --color-danger-50:  #fdf4ff;
+    --color-danger-100: #fae8ff;
+    --color-danger-200: #f5d0fe;
+    --color-danger-300: #f0abfc;
+    --color-danger-400: #e879f9;
+    --color-danger-500: #d946ef;
+    --color-danger-600: #c026d3;
+    --color-danger-700: #a21caf;
+    --color-danger-800: #86198f;
+    --color-danger-900: #701a75;
+    --color-danger-950: #4a044e;
+
+    /* Warning = yellow */
+    --color-warning-50:  #fefce8;
+    --color-warning-100: #fef9c3;
+    --color-warning-200: #fef08a;
+    --color-warning-300: #fde047;
+    --color-warning-400: #facc15;
+    --color-warning-500: #eab308;
+    --color-warning-600: #ca8a04;
+    --color-warning-700: #a16207;
+    --color-warning-800: #854d0e;
+    --color-warning-900: #713f12;
+    --color-warning-950: #422006;
+
+    /* Success = neo-green */
+    --color-success-50:  #f0fff4;
+    --color-success-100: #dcffe9;
+    --color-success-200: #b5ffcc;
+    --color-success-300: #6bffaa;
+    --color-success-400: #00ff7f;
+    --color-success-500: #00e06e;
+    --color-success-600: #00b857;
+    --color-success-700: #008c41;
+    --color-success-800: #006930;
+    --color-success-900: #005528;
+    --color-success-950: #003018;
+
+    /* Info = teal (alias) */
+    --color-info-400: #22d3ee;
+    --color-info-500: #06b6d4;
+    --color-info-600: #0891b2;
+
+    /* Gray = neutral on cream */
+    --color-gray-50:  #F0EAD6;
+    --color-gray-100: #e5dfc6;
+    --color-gray-200: #d5ceae;
+    --color-gray-300: #b8ae90;
+    --color-gray-400: #9a9070;
+    --color-gray-500: #7d7458;
+    --color-gray-600: #615a43;
+    --color-gray-700: #4a4432;
+    --color-gray-800: #332f22;
+    --color-gray-900: #1c1a12;
+    --color-gray-950: #0d0c08;
 }
 
+/* ─── GLOBAL BASE ─────────────────────────────────────────────────────────── */
 @layer base {
+    *, *::before, *::after {
+        border-radius: 0 !important;
+    }
+
     body {
         background-color: var(--color-neo-bg);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.5px, transparent 1.5px);
@@ -60,13 +138,13 @@
         color: var(--color-neo-black);
         font-family: var(--font-mono);
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 
-    h1, h2, h3, h4, h5, h6, .font-heading {
+    h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-heading);
-        text-transform: uppercase;
         font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     ::selection {
@@ -74,18 +152,103 @@
         color: var(--color-neo-black);
     }
 
-    .fi-layout { background-color: transparent; }
-    .fi-main { background-color: transparent; }
-    .fi-page { background-color: transparent !important; }
+    /* ── Layout ── */
+    .fi-layout,
+    .fi-main,
+    .fi-simple-layout {
+        background-color: transparent;
+    }
 
+    .fi-page {
+        background-color: transparent !important;
+    }
+
+    /* ── TOPBAR — black bar ── */
+    .fi-topbar {
+        background-color: var(--color-neo-black) !important;
+        border-bottom: 3px solid var(--color-neo-yellow) !important;
+        box-shadow: none !important;
+    }
+
+    .fi-topbar-nav {
+        background-color: transparent !important;
+    }
+
+    /* brand region injected via renderHook */
+    .neo-topbar-brand {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+        padding: 0 .5rem;
+    }
+
+    .neo-topbar-badge {
+        background-color: var(--color-neo-yellow);
+        color: var(--color-neo-black);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: .65rem;
+        text-transform: uppercase;
+        letter-spacing: .12em;
+        padding: .125rem .5rem;
+        border: 2px solid var(--color-neo-yellow);
+    }
+
+    .neo-topbar-version {
+        font-family: var(--font-mono);
+        font-size: .6rem;
+        color: #666;
+        letter-spacing: .04em;
+    }
+
+    /* topbar icons, user avatar, breadcrumbs — lighten for dark bg */
+    .fi-topbar .fi-icon-btn {
+        border-color: #333 !important;
+        background-color: transparent !important;
+        color: #aaa !important;
+    }
+
+    .fi-topbar .fi-icon-btn:hover {
+        background-color: var(--color-neo-yellow) !important;
+        border-color: var(--color-neo-yellow) !important;
+        color: var(--color-neo-black) !important;
+        transform: translate(-1px, -1px) !important;
+    }
+
+    .fi-topbar .fi-user-avatar,
+    .fi-topbar .fi-user-menu-trigger {
+        border-color: #444 !important;
+        background-color: #222 !important;
+        color: var(--color-neo-yellow) !important;
+    }
+
+    .fi-topbar .fi-breadcrumbs {
+        color: #555 !important;
+    }
+
+    .fi-topbar .fi-breadcrumb-item {
+        color: #888 !important;
+    }
+
+    .fi-topbar .fi-breadcrumb-item:hover {
+        color: var(--color-neo-yellow) !important;
+    }
+
+    .fi-topbar .fi-breadcrumb-separator {
+        color: #444 !important;
+    }
+
+    /* ── SIDEBAR ── */
     .fi-sidebar {
         background-color: var(--color-neo-bg) !important;
         border-right: 4px solid var(--color-neo-black) !important;
+        box-shadow: none !important;
     }
 
     .fi-sidebar-header {
-        border-bottom: none !important;
+        border-bottom: 4px solid var(--color-neo-black) !important;
         padding: 1rem !important;
+        background-color: var(--color-neo-yellow) !important;
     }
 
     .fi-sidebar-brand {
@@ -93,102 +256,129 @@
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.1em !important;
-        font-size: 1.25rem !important;
+        font-size: 1.1rem !important;
         color: var(--color-neo-black) !important;
     }
 
-    .fi-sidebar-nav { 
-        padding: 1rem !important; 
-        gap: 0.75rem !important;
-        display: flex !important;
-        flex-direction: column !important;
+    .fi-sidebar-brand img {
+        filter: none !important;
+    }
+
+    .fi-sidebar-nav {
+        padding: 0.875rem !important;
+        gap: 0 !important;
     }
 
     .fi-sidebar-group {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.75rem !important;
     }
 
-    .fi-sidebar-group-title {
+    .fi-sidebar-group-label {
         font-family: var(--font-heading) !important;
         text-transform: uppercase !important;
         font-size: 0.6rem !important;
-        letter-spacing: 0.1em !important;
+        letter-spacing: 0.15em !important;
         color: var(--color-neo-black) !important;
         padding: 0.5rem 0.75rem !important;
-        opacity: 0.6 !important;
+        opacity: 0.55 !important;
+        font-weight: 700 !important;
+    }
+
+    .fi-sidebar-item {
+        margin-bottom: 0.5rem !important;
     }
 
     .fi-sidebar-item-btn {
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 0.75rem !important;
-        padding: 0.875rem 1rem !important;
+        gap: 0.625rem !important;
+        padding: 0.75rem 1rem !important;
         background-color: var(--color-neo-white) !important;
         border: 3px solid var(--color-neo-black) !important;
-        border-radius: 0 !important;
+        box-shadow: var(--shadow-neo) !important;
         font-family: var(--font-heading) !important;
         text-transform: uppercase !important;
         font-size: 0.7rem !important;
         font-weight: 600 !important;
-        letter-spacing: 0.08em !important;
-        transition: all 0.15s ease !important;
+        letter-spacing: 0.1em !important;
         color: var(--color-neo-black) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
-        position: relative !important;
-        margin-bottom: 0.5rem !important;
-        min-height: 48px !important;
+        transition: all 0.12s ease !important;
+        min-height: 44px !important;
+        width: 100% !important;
     }
 
     .fi-sidebar-item-btn:hover {
-        box-shadow: 7px 7px 0px 0px var(--color-neo-black) !important;
         background-color: var(--color-neo-yellow) !important;
+        transform: translate(-2px, -2px) !important;
+        box-shadow: var(--shadow-neo-lg) !important;
     }
 
+    /* ── Active sidebar item — YELLOW — all possible Filament v5 selectors ── */
+
+    /* Class-based active states */
     .fi-sidebar-item-active .fi-sidebar-item-btn,
-    .fi-sidebar-item-active.fi-sidebar-item .fi-sidebar-item-btn,
-    a.fi-sidebar-item-active .fi-sidebar-item-btn,
-    [data-active="true"] .fi-sidebar-item-btn,
-    [class*="sidebar-item-active"] .fi-sidebar-item-btn,
     .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
-    .fi-sidebar-item.is-active .fi-sidebar-item-btn,
     .fi-sidebar-item.active .fi-sidebar-item-btn,
-    li.fi-sidebar-item.active > button,
-    li.fi-sidebar-item.is-active > button,
-    .fi-sidebar-item-active > button {
+    .fi-sidebar-item.is-active .fi-sidebar-item-btn,
+    /* aria-based (most reliable in v5) */
+    .fi-sidebar-item-btn[aria-current="page"],
+    .fi-sidebar-item-btn[aria-selected="true"],
+    /* data attribute fallback */
+    .fi-sidebar-item-btn[data-active="true"],
+    /* Alpine x-bind class variants */
+    .fi-sidebar-item > .fi-sidebar-item-btn.active,
+    .fi-sidebar-item > .fi-sidebar-item-btn.fi-active,
+    /* li-level active */
+    li.fi-sidebar-item[class*="active"] .fi-sidebar-item-btn {
         background-color: var(--color-neo-yellow) !important;
-        background: var(--color-neo-yellow) !important;
+        background:       var(--color-neo-yellow) !important;
         border: 3px solid var(--color-neo-black) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
-        color: var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
         font-weight: 700 !important;
+        transform: none !important;
+        position: relative !important;
+        color: var(--color-neo-black) !important;
     }
 
-    /* Force override for any inline styles or dynamic classes */
-    .fi-sidebar .fi-sidebar-nav .fi-sidebar-item button[aria-current="page"] {
-        background-color: var(--color-neo-yellow) !important;
-        background: var(--color-neo-yellow) !important;
-    }
-
-    .fi-sidebar-item-active .fi-sidebar-item-btn::before {
+    /* Left accent stripe on active items */
+    .fi-sidebar-item-active .fi-sidebar-item-btn::before,
+    .fi-sidebar-item-btn[aria-current="page"]::before,
+    .fi-sidebar-item-btn[data-active="true"]::before {
         content: '' !important;
         position: absolute !important;
         left: 0 !important;
         top: 0 !important;
         bottom: 0 !important;
-        width: 6px !important;
+        width: 5px !important;
         background-color: var(--color-neo-black) !important;
+        display: block !important;
     }
 
-    .fi-sidebar-item-active .fi-sidebar-item-btn:hover {
-        transform: translate(-3px, -3px) !important;
-        box-shadow: 7px 7px 0px 0px var(--color-neo-black) !important;
+    /* Keep yellow on hover for active items */
+    .fi-sidebar-item-active .fi-sidebar-item-btn:hover,
+    .fi-sidebar-item-btn[aria-current="page"]:hover {
+        background-color: var(--color-neo-yellow) !important;
+        transform: translate(-2px, -2px) !important;
+        box-shadow: var(--shadow-neo-lg) !important;
     }
 
+    .fi-sidebar-item-icon {
+        color: var(--color-neo-black) !important;
+        width: 1.125rem !important;
+        height: 1.125rem !important;
+        flex-shrink: 0 !important;
+    }
+
+    .fi-sidebar-item-label {
+        color: var(--color-neo-black) !important;
+    }
+
+    /* ── PAGE HEADER ── */
     .fi-page-header {
-        background-color: var(--color-neo-white);
-        border-bottom: 4px solid var(--color-neo-black);
-        padding: 1.5rem !important;
+        background-color: var(--color-neo-white) !important;
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        padding: 1.25rem 1.5rem !important;
         margin-bottom: 1.5rem !important;
     }
 
@@ -196,284 +386,1234 @@
         font-family: var(--font-heading) !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+        font-size: 1.75rem !important;
+        line-height: 1 !important;
     }
 
+    .fi-page-sub-heading {
+        font-family: var(--font-mono) !important;
+        font-size: 0.8rem !important;
+        color: var(--color-neo-black) !important;
+        opacity: 0.65 !important;
+    }
+
+    /* ── BREADCRUMBS ── */
     .fi-breadcrumbs {
         font-family: var(--font-mono) !important;
-        font-size: 0.75rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .fi-breadcrumb-item {
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-breadcrumb-item:hover {
+        color: var(--color-neo-teal) !important;
+        text-decoration: underline !important;
+        text-underline-offset: 2px !important;
+    }
+
+    .fi-breadcrumb-separator {
+        color: var(--color-neo-black) !important;
     }
 }
 
+/* ─── COMPONENTS ──────────────────────────────────────────────────────────── */
 @layer components {
-    .neo-border { border: 4px solid var(--color-neo-black); }
-    .neo-border-sm { border: 2px solid var(--color-neo-black); }
 
-    .shadow-neo-sm { box-shadow: 2px 2px 0px 0px var(--color-neo-black); }
-    .shadow-neo { box-shadow: 4px 4px 0px 0px var(--color-neo-black); }
-    .shadow-neo-lg { box-shadow: 8px 8px 0px 0px var(--color-neo-black); }
-    .shadow-neo-xl { box-shadow: 12px 12px 0px 0px var(--color-neo-black); }
-
-    .btn-neo, .card-neo, .input-neo {
-        transition: all 0.1s ease;
-        cursor: pointer;
-    }
-
-    .btn-neo:active, .card-neo:active {
-        transform: translate(4px, 4px);
-        box-shadow: 0px 0px 0px 0px var(--color-neo-black) !important;
-    }
-
-    .fi-card {
-        border: 4px solid var(--color-neo-black) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
-        transition: all 0.1s ease !important;
-        border-radius: 0 !important;
-    }
-
-    .fi-card:hover {
-        transform: translate(-2px, -2px) !important;
-        box-shadow: 8px 8px 0px 0px var(--color-neo-black) !important;
-    }
-
+    /* ━━━ BUTTONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     .fi-btn {
-        border: 2px solid var(--color-neo-black) !important;
-        box-shadow: 3px 3px 0px 0px var(--color-neo-black) !important;
-        transition: all 0.1s ease !important;
         font-family: var(--font-heading) !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-        border-radius: 0 !important;
+        letter-spacing: 0.08em !important;
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+        transition: all 0.1s ease !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+        color: var(--color-neo-black) !important; /* Force black text */
     }
 
-    .fi-btn:hover {
-        transform: translate(-2px, -2px) !important;
-        box-shadow: 5px 5px 0px 0px var(--color-neo-black) !important;
-    }
-
-    .fi-btn:active {
-        transform: translate(2px, 2px) !important;
-        box-shadow: 1px 1px 0px 0px var(--color-neo-black) !important;
-    }
-
-    .fi-btn-primary {
-        background-color: var(--color-neo-teal) !important;
+    /* Force all icons inside buttons to be black */
+    .fi-btn svg {
         color: var(--color-neo-black) !important;
+        stroke-width: 2.5px !important; /* More contrast for Neo-Brutalist */
     }
 
-    .fi-btn-secondary {
+    .fi-btn:hover:not(:disabled) {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: var(--shadow-neo) !important;
+    }
+
+    .fi-btn:active:not(:disabled) {
+        transform: translate(3px, 3px) !important;
+        box-shadow: none !important;
+    }
+
+    .fi-btn:disabled {
+        opacity: 0.45 !important;
+        cursor: not-allowed !important;
+        box-shadow: none !important;
+    }
+
+    /* Primary (Teal) */
+    .fi-btn-color-primary {
+        background-color: var(--color-neo-teal) !important;
+    }
+
+    /* Danger / Cancel (Magenta) */
+    .fi-btn-color-danger {
+        background-color: var(--color-neo-magenta) !important;
+    }
+
+    /* Warning (Yellow) */
+    .fi-btn-color-warning {
+        background-color: var(--color-neo-yellow) !important;
+    }
+
+    /* Success (Green) */
+    .fi-btn-color-success {
+        background-color: var(--color-neo-green) !important;
+    }
+
+    /* Gray / Secondary (White/Stone) */
+    .fi-btn-color-gray {
+        background-color: var(--color-neo-white) !important;
+    }
+
+    /* Info (Teal alias) */
+    .fi-btn-color-info {
+        background-color: var(--color-neo-teal) !important;
+    }
+
+    /* Purple (Back Button) */
+    .fi-btn-color-purple {
+        background-color: var(--color-neo-purple) !important;
+    }
+
+    /* Sizes */
+    .fi-btn-size-xs { padding: 0.25rem 0.625rem !important; font-size: 0.65rem !important; }
+    .fi-btn-size-sm { padding: 0.375rem 0.75rem !important; font-size: 0.7rem !important; }
+    .fi-btn-size-md { padding: 0.5rem 1rem !important;      font-size: 0.75rem !important; }
+    .fi-btn-size-lg { padding: 0.625rem 1.25rem !important; font-size: 0.8rem !important; }
+    .fi-btn-size-xl { padding: 0.75rem 1.5rem !important;   font-size: 0.875rem !important; }
+
+    /* Icon buttons */
+    .fi-icon-btn {
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
         background-color: var(--color-neo-white) !important;
         color: var(--color-neo-black) !important;
+        transition: all 0.1s ease !important;
     }
 
-    .fi-btn-danger {
-        background-color: var(--color-neo-salmon) !important;
+    .fi-icon-btn:hover {
+        background-color: var(--color-neo-yellow) !important;
+        transform: translate(-1px, -1px) !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+    }
+
+    /* Links */
+    .fi-link {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.05em !important;
+        text-decoration: underline !important;
+        text-underline-offset: 2px !important;
         color: var(--color-neo-black) !important;
     }
 
-    .fi-input {
-        border: 2px solid var(--color-neo-black) !important;
-        box-shadow: 2px 2px 0px 0px var(--color-neo-black) !important;
-        border-radius: 0 !important;
-        font-family: var(--font-mono) !important;
+    .fi-link:hover {
+        color: var(--color-neo-teal) !important;
     }
 
-    .fi-input:focus {
+    /* ━━━ FORM FIELDS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-fo-field-wrp {
+        gap: 0.375rem !important;
+    }
+
+    .fi-fo-field-wrp-label label,
+    .fi-fo-field-wrp > label,
+    .fi-label {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-fo-field-wrp-helper-text,
+    .fi-fo-helper-text {
+        font-family: var(--font-mono) !important;
+        font-size: 0.7rem !important;
+        color: var(--color-neo-black) !important;
+        opacity: 0.6 !important;
+    }
+
+    /* Input */
+    .fi-input,
+    .fi-fo-text-input input,
+    .fi-fo-textarea textarea {
+        font-family: var(--font-mono) !important;
+        font-size: 0.875rem !important;
+        background-color: var(--color-neo-white) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        color: var(--color-neo-black) !important;
+        transition: all 0.1s ease !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    .fi-input:focus,
+    .fi-fo-text-input input:focus,
+    .fi-fo-textarea textarea:focus {
         border-color: var(--color-neo-magenta) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        outline: none !important;
+        ring: none !important;
+    }
+
+    .fi-input:hover:not(:focus),
+    .fi-fo-text-input input:hover:not(:focus) {
+        border-color: var(--color-neo-magenta) !important;
+    }
+
+    .fi-input-wrp {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        transition: all 0.1s ease !important;
+    }
+
+    .fi-input-wrp:focus-within {
+        border-color: var(--color-neo-magenta) !important;
+        box-shadow: var(--shadow-neo) !important;
+    }
+
+    /* Select */
+    .fi-select-input,
+    .fi-fo-select select {
+        font-family: var(--font-mono) !important;
+        background-color: var(--color-neo-white) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        color: var(--color-neo-black) !important;
+        padding: 0.5rem 0.75rem !important;
+        cursor: pointer !important;
+    }
+
+    .fi-select-input:focus {
+        border-color: var(--color-neo-magenta) !important;
+        box-shadow: var(--shadow-neo) !important;
         outline: none !important;
     }
 
-    .fi-input:hover {
-        border-color: var(--color-neo-magenta) !important;
-    }
-
-    .fi-label {
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-        font-size: 0.75rem !important;
-        letter-spacing: 0.05em !important;
+    /* Checkbox Label */
+    .fi-checkbox-label,
+    .fi-fo-checkbox label {
+        font-family: var(--font-mono) !important;
+        font-size: 0.875rem !important;
         color: var(--color-neo-black) !important;
     }
 
-    .fi-table {
-        border: 4px solid var(--color-neo-black) !important;
-        border-radius: 0 !important;
+    /* Radio */
+    .fi-radio-input,
+    .fi-fo-radio input[type="radio"] {
+        width: 1.125rem !important;
+        height: 1.125rem !important;
+        border: 3px solid var(--color-neo-black) !important;
+        accent-color: var(--color-neo-teal) !important;
+        cursor: pointer !important;
     }
 
-    .fi-table th {
-        background-color: var(--color-neo-bg) !important;
-        border-bottom: 4px solid var(--color-neo-black) !important;
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-        font-size: 0.75rem !important;
-        letter-spacing: 0.05em !important;
-        color: var(--color-neo-black) !important;
-    }
-
-    .fi-table td {
-        border-bottom: 2px solid var(--color-neo-black) !important;
+    .fi-radio-label {
         font-family: var(--font-mono) !important;
         font-size: 0.875rem !important;
     }
 
-    .fi-table tr:hover td {
-        background-color: var(--color-neo-white) !important;
+    /* Toggle */
+    .fi-toggle {
+        cursor: pointer !important;
     }
 
-    .fi-badge {
-        border: 2px solid var(--color-neo-black) !important;
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-        font-size: 0.7rem !important;
-        border-radius: 0 !important;
-        font-weight: 600 !important;
+    .fi-toggle-input:checked + .fi-toggle-thumb-wrapper .fi-toggle-thumb,
+    button[role="switch"][aria-checked="true"] {
+        background-color: var(--color-neo-teal) !important;
+        border-color: var(--color-neo-black) !important;
     }
 
-    .fi-dropdown {
-        border: 4px solid var(--color-neo-black) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
-        border-radius: 0 !important;
+    button[role="switch"] {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-gray-300) !important;
     }
 
-    .fi-modal {
-        border: 4px solid var(--color-neo-black) !important;
-        box-shadow: 8px 8px 0px 0px var(--color-neo-black) !important;
-        border-radius: 0 !important;
-    }
-
-    .fi-modal-header {
-        border-bottom: 2px solid var(--color-neo-black) !important;
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-    }
-
-    .fi-tabs {
-        border-bottom: 4px solid var(--color-neo-black) !important;
-    }
-
-    .fi-tabs-item {
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-        font-size: 0.75rem !important;
-        letter-spacing: 0.05em !important;
-        border: 2px solid transparent !important;
-    }
-
-    .fi-tabs-item-active {
-        border: 2px solid var(--color-neo-black) !important;
-        border-bottom: none !important;
+    button[role="switch"][aria-checked="true"] {
         background-color: var(--color-neo-teal) !important;
     }
 
+    /* File upload */
+    .fi-fo-file-upload {
+        border: 4px dashed var(--color-neo-black) !important;
+        background-color: var(--color-neo-white) !important;
+        transition: background-color 0.1s ease !important;
+    }
+
+    .fi-fo-file-upload:hover {
+        background-color: var(--color-neo-yellow) !important;
+    }
+
+    /* Color picker */
+    .fi-fo-color-picker input[type="color"] {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        padding: 0 !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        cursor: pointer !important;
+    }
+
+    /* Tags / multi-select */
+    .fi-fo-tags-input-badge {
+        background-color: var(--color-neo-teal) !important;
+        border: 2px solid var(--color-neo-black) !important;
+        font-family: var(--font-heading) !important;
+        font-size: 0.65rem !important;
+        text-transform: uppercase !important;
+        font-weight: 700 !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+    }
+
+    /* Date picker */
+    .fi-date-picker-day:hover {
+        background-color: var(--color-neo-yellow) !important;
+        border: 2px solid var(--color-neo-black) !important;
+    }
+
+    .fi-date-picker-day-selected {
+        background-color: var(--color-neo-teal) !important;
+        border: 2px solid var(--color-neo-black) !important;
+        font-weight: 700 !important;
+    }
+
+    /* ━━━ SECTION / FIELDSET ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-section {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        background-color: var(--color-neo-white) !important;
+    }
+
+    .fi-section-header {
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        padding: 0.875rem 1.25rem !important;
+        background-color: var(--color-neo-bg) !important;
+    }
+
+    .fi-section-title {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+        font-size: 1rem !important;
+    }
+
+    .fi-section-description {
+        font-family: var(--font-mono) !important;
+        font-size: 0.75rem !important;
+        color: var(--color-neo-black) !important;
+        opacity: 0.6 !important;
+    }
+
+    .fi-section-content {
+        padding: 1.25rem !important;
+    }
+
+    .fi-section-footer {
+        border-top: 3px solid var(--color-neo-black) !important;
+        padding: 0.875rem 1.25rem !important;
+        background-color: var(--color-neo-bg) !important;
+    }
+
+    .fi-fo-fieldset {
+        border: 3px solid var(--color-neo-black) !important;
+        padding: 1rem !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+    }
+
+    .fi-fo-fieldset legend {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.1em !important;
+        background-color: var(--color-neo-yellow) !important;
+        border: 2px solid var(--color-neo-black) !important;
+        padding: 0.125rem 0.5rem !important;
+        margin-left: 0.5rem !important;
+    }
+
+    /* ━━━ CARDS (widgets, general) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-card,
+    .fi-wi-chart,
+    .fi-wi-table {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        background-color: var(--color-neo-white) !important;
+        transition: all 0.12s ease !important;
+    }
+
+    .fi-card:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: var(--shadow-neo-lg) !important;
+    }
+
+    /* ━━━ STATS WIDGET ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-wi-stats-overview-stat {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        background-color: var(--color-neo-white) !important;
+        padding: 1.25rem !important;
+        transition: all 0.12s ease !important;
+    }
+
+    .fi-wi-stats-overview-stat:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: var(--shadow-neo-lg) !important;
+    }
+
+    .fi-wi-stats-overview-stat-label {
+        font-family: var(--font-mono) !important;
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+        opacity: 0.6 !important;
+    }
+
+    .fi-wi-stats-overview-stat-value {
+        font-family: var(--font-heading) !important;
+        font-size: 2.25rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        color: var(--color-neo-black) !important;
+        line-height: 1 !important;
+    }
+
+    .fi-wi-stats-overview-stat-description {
+        font-family: var(--font-mono) !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* increase icon container */
+    .fi-wi-stats-overview-stat-icon {
+        background-color: var(--color-neo-teal) !important;
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        padding: 0.5rem !important;
+    }
+
+    /* ━━━ TABLES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-ta-ctn {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo) !important;
+        background-color: var(--color-neo-white) !important;
+        overflow: hidden !important;
+    }
+
+    .fi-ta-header {
+        background-color: var(--color-neo-yellow) !important;
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        padding: 0.875rem 1rem !important;
+    }
+
+    .fi-ta-header-toolbar {
+        background-color: transparent !important;
+    }
+
+    .fi-ta-filters {
+        border-top: 3px solid var(--color-neo-black) !important;
+        background-color: var(--color-neo-bg) !important;
+        padding: 0.75rem 1rem !important;
+    }
+
+    .fi-ta-row {
+        border-bottom: 2px solid var(--color-neo-black) !important;
+        transition: background-color 0.08s ease !important;
+    }
+
+    .fi-ta-row:last-child {
+        border-bottom: none !important;
+    }
+
+    .fi-ta-row:hover td,
+    .fi-ta-row:hover .fi-ta-cell {
+        background-color: color-mix(in srgb, var(--color-neo-teal) 15%, transparent) !important;
+    }
+
+    .fi-ta-header-cell {
+        background-color: transparent !important;
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        padding: 0.75rem 1rem !important;
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    /* Mobile No-Scroll optimization */
+    @media (max-width: 767px) {
+        .fi-ta-ctn {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            overflow: visible !important;
+        }
+
+        .fi-ta-content {
+            display: block !important;
+        }
+
+        .fi-ta-table {
+            display: block !important;
+            border-collapse: separate !important;
+            border-spacing: 0 1.5rem !important;
+        }
+
+        .fi-ta-header-ctn {
+            display: none !important; /* Hide column headers on mobile */
+        }
+
+        .fi-ta-row {
+            display: block !important;
+            background-color: white !important;
+            border: 4px solid black !important;
+            box-shadow: var(--shadow-neo) !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        .fi-ta-cell {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            border: none !important;
+            border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+            padding: 0.75rem 1rem !important;
+            width: 100% !important;
+            text-align: right !important;
+        }
+
+        .fi-ta-cell:last-child {
+            border-bottom: none !important;
+        }
+
+        /* Label injection for mobile cells if needed could be done via data-attributes, 
+           but here we assume native Filament column labels are accessible or 
+           we rely on the visual content. */
+        .fi-ta-cell::before {
+            content: attr(data-label) !important;
+            font-family: var(--font-heading) !important;
+            font-size: 0.65rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            color: #666 !important;
+            text-align: left !important;
+            margin-right: 1rem !important;
+        }
+    }
+
+    .fi-ta-header-cell:not(:last-child) {
+        border-right: 2px solid var(--color-neo-black) !important;
+    }
+
+    .fi-ta-cell {
+        font-family: var(--font-mono) !important;
+        font-size: 0.825rem !important;
+        padding: 0.75rem 1rem !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-ta-cell:not(:last-child) {
+        border-right: 2px solid rgba(0,0,0,0.12) !important;
+    }
+
+    /* Sortable column header */
+    .fi-ta-header-cell[wire\:click],
+    .fi-ta-header-cell button {
+        cursor: pointer !important;
+    }
+
+    .fi-ta-header-cell button:hover {
+        background-color: var(--color-neo-teal) !important;
+    }
+
+    /* Table search */
+    .fi-ta-search-field input {
+        font-family: var(--font-mono) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        padding: 0.375rem 0.75rem !important;
+        font-size: 0.825rem !important;
+    }
+
+    .fi-ta-search-field input:focus {
+        border-color: var(--color-neo-magenta) !important;
+        box-shadow: var(--shadow-neo) !important;
+        outline: none !important;
+    }
+
+    /* Bulk action checkboxes */
+    .fi-ta-row-checkbox input[type="checkbox"],
+    .fi-checkbox-input,
+    .fi-fo-checkbox input[type="checkbox"] {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+        cursor: pointer !important;
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all 0.1s ease !important;
+        border-radius: 0 !important;
+    }
+
+    .fi-ta-row-checkbox input[type="checkbox"]:checked,
+    .fi-checkbox-input:checked,
+    .fi-fo-checkbox input[type="checkbox"]:checked {
+        background-color: var(--color-neo-teal) !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+        transform: translate(-1px, -1px) !important;
+    }
+
+    .fi-ta-row-checkbox input[type="checkbox"]:checked::after,
+    .fi-checkbox-input:checked::after,
+    .fi-fo-checkbox input[type="checkbox"]:checked::after {
+        content: '✓' !important;
+        display: block !important;
+        color: var(--color-neo-black) !important;
+        font-weight: 900 !important;
+        font-size: 0.9rem !important;
+        line-height: 1 !important;
+    }
+
+    /* Selected Row Highlight */
+    .fi-ta-row.fi-ta-row-selected td,
+    .fi-ta-row:has(input[type="checkbox"]:checked) td {
+        background-color: color-mix(in srgb, var(--color-neo-yellow) 20%, transparent) !important;
+    }
+
+    /* Pagination */
+    .fi-pagination {
+        border-top: 3px solid var(--color-neo-black) !important;
+        background-color: var(--color-neo-bg) !important;
+        padding: 0.75rem 1rem !important;
+        font-family: var(--font-mono) !important;
+        font-size: 0.75rem !important;
+    }
+
+    .fi-pagination-item a,
+    .fi-pagination-item button {
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.625rem !important;
+        transition: all 0.1s ease !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-pagination-item a:hover,
+    .fi-pagination-item button:hover {
+        background-color: var(--color-neo-yellow) !important;
+        transform: translate(-1px, -1px) !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+    }
+
+    .fi-pagination-item-active a,
+    .fi-pagination-item-active button,
+    [aria-current="page"] {
+        background-color: var(--color-neo-teal) !important;
+        font-weight: 700 !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+    }
+
+    /* Empty state */
+    .fi-ta-empty-state,
+    .fi-empty-state {
+        border: 3px dashed var(--color-neo-black) !important;
+        background-color: color-mix(in srgb, var(--color-neo-bg) 60%, white) !important;
+        padding: 3rem 2rem !important;
+    }
+
+    .fi-ta-empty-state-heading,
+    .fi-empty-state-heading {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-ta-empty-state-description,
+    .fi-empty-state-description {
+        font-family: var(--font-mono) !important;
+        font-size: 0.825rem !important;
+        opacity: 0.65 !important;
+    }
+
+    /* ━━━ BADGES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-badge {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.65rem !important;
+        letter-spacing: 0.1em !important;
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        padding: 0.125rem 0.5rem !important;
+    }
+
+    .fi-badge-color-primary { background-color: var(--color-neo-teal) !important;    color: var(--color-neo-black) !important; }
+    .fi-badge-color-danger  { background-color: var(--color-neo-magenta) !important;  color: var(--color-neo-black) !important; }
+    .fi-badge-color-warning { background-color: var(--color-neo-yellow) !important;   color: var(--color-neo-black) !important; }
+    .fi-badge-color-success { background-color: var(--color-neo-green) !important;    color: var(--color-neo-black) !important; }
+    .fi-badge-color-info    { background-color: var(--color-neo-teal) !important;     color: var(--color-neo-black) !important; }
+    .fi-badge-color-gray    { background-color: var(--color-neo-white) !important;    color: var(--color-neo-black) !important; }
+
+    /* ━━━ MODALS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-modal-window {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xl) !important;
+        background-color: var(--color-neo-white) !important;
+    }
+
+    .fi-modal-header {
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        background-color: var(--color-neo-yellow) !important;
+        padding: 1rem 1.25rem !important;
+    }
+
+    .fi-modal-heading {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-size: 1.25rem !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-modal-description {
+        font-family: var(--font-mono) !important;
+        font-size: 0.8rem !important;
+        opacity: 0.7 !important;
+    }
+
+    .fi-modal-close-btn {
+        border: 2px solid var(--color-neo-black) !important;
+        background-color: var(--color-neo-white) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        transition: all 0.1s ease !important;
+    }
+
+    .fi-modal-close-btn:hover {
+        background-color: var(--color-neo-magenta) !important;
+        transform: translate(-1px, -1px) !important;
+    }
+
+    .fi-modal-footer {
+        border-top: 3px solid var(--color-neo-black) !important;
+        background-color: var(--color-neo-bg) !important;
+        padding: 0.875rem 1.25rem !important;
+    }
+
+    /* Modal slide-over */
+    .fi-fo-modal-slide-over {
+        border-left: 4px solid var(--color-neo-black) !important;
+        box-shadow: -8px 0 0 0 var(--color-neo-black) !important;
+        background-color: var(--color-neo-white) !important;
+    }
+
+    /* ━━━ NOTIFICATIONS (Toasts) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-no-notification {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xl) !important;
+        background-color: var(--color-neo-white) !important;
+        font-family: var(--font-mono) !important;
+        overflow: hidden !important;
+    }
+
+    .fi-no-notification::before {
+        content: '' !important;
+        display: block !important;
+        width: 5px !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+    }
+
+    /* Color strip per type */
+    .fi-no-notification-color-primary::before  { background-color: var(--color-neo-teal) !important; }
+    .fi-no-notification-color-danger::before   { background-color: var(--color-neo-magenta) !important; }
+    .fi-no-notification-color-warning::before  { background-color: var(--color-neo-yellow) !important; }
+    .fi-no-notification-color-success::before  { background-color: var(--color-neo-green) !important; }
+    .fi-no-notification-color-info::before     { background-color: var(--color-neo-teal) !important; }
+
+    .fi-no-notification-title {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.05em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-no-notification-body {
+        font-family: var(--font-mono) !important;
+        font-size: 0.8rem !important;
+        color: var(--color-neo-black) !important;
+        opacity: 0.8 !important;
+    }
+
+    .fi-no-notification-close-btn {
+        border: 2px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        transition: all 0.1s ease !important;
+    }
+
+    .fi-no-notification-close-btn:hover {
+        background-color: var(--color-neo-yellow) !important;
+    }
+
+    /* ━━━ TABS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-tabs {
+        border-bottom: 4px solid var(--color-neo-black) !important;
+        background-color: transparent !important;
+        gap: 0 !important;
+    }
+
+    .fi-tabs-tab {
+        font-family: var(--font-heading) !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+        border: 3px solid transparent !important;
+        border-bottom: none !important;
+        padding: 0.625rem 1rem !important;
+        background-color: transparent !important;
+        transition: all 0.1s ease !important;
+        cursor: pointer !important;
+        margin-bottom: -4px !important;
+    }
+
+    .fi-tabs-tab:hover {
+        background-color: var(--color-neo-yellow) !important;
+        border-color: var(--color-neo-black) !important;
+    }
+
+    .fi-tabs-tab-active,
+    .fi-tabs-tab[aria-selected="true"] {
+        background-color: var(--color-neo-teal) !important;
+        border: 3px solid var(--color-neo-black) !important;
+        border-bottom: 4px solid var(--color-neo-teal) !important;
+        font-weight: 700 !important;
+    }
+
+    .fi-tabs-content {
+        padding: 1.25rem 0 !important;
+    }
+
+    /* ━━━ DROPDOWNS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-dropdown-panel {
+        border: 4px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-lg) !important;
+        background-color: var(--color-neo-white) !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .fi-dropdown-header {
+        border-bottom: 3px solid var(--color-neo-black) !important;
+        padding: 0.625rem 0.875rem !important;
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.08em !important;
+        background-color: var(--color-neo-bg) !important;
+    }
+
+    .fi-dropdown-list-item {
+        font-family: var(--font-mono) !important;
+        font-size: 0.825rem !important;
+        padding: 0.5rem 0.875rem !important;
+        color: var(--color-neo-black) !important;
+        border-bottom: 2px solid rgba(0,0,0,0.1) !important;
+        cursor: pointer !important;
+        transition: background-color 0.08s ease !important;
+    }
+
+    .fi-dropdown-list-item:last-child {
+        border-bottom: none !important;
+    }
+
+    .fi-dropdown-list-item:hover,
+    .fi-dropdown-list-item:focus {
+        background-color: var(--color-neo-yellow) !important;
+        outline: none !important;
+    }
+
+    .fi-dropdown-list-item-danger {
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-dropdown-list-item-danger:hover {
+        background-color: var(--color-neo-magenta) !important;
+    }
+
+    /* ━━━ USER MENU / AVATAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-user-avatar,
+    .fi-user-menu-trigger {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-teal) !important;
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        transition: all 0.1s ease !important;
+    }
+
+    .fi-user-menu-trigger:hover {
+        transform: translate(-1px, -1px) !important;
+        box-shadow: var(--shadow-neo-sm) !important;
+    }
+
+    /* ━━━ ACTIONS BAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-ac-action-group {
+        gap: 0.5rem !important;
+    }
+
+    /* ━━━ INFOLIST ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-in-entry-wrp {
+        gap: 0.25rem !important;
+    }
+
+    .fi-in-entry-wrp-label {
+        font-family: var(--font-heading) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.1em !important;
+        color: var(--color-neo-black) !important;
+    }
+
+    .fi-in-text-entry {
+        font-family: var(--font-mono) !important;
+        font-size: 0.875rem !important;
+    }
+
+    /* ━━━ PROGRESS BAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fi-progress-bar-wrapper,
+    [role="progressbar"] {
+        border: 3px solid var(--color-neo-black) !important;
+        box-shadow: var(--shadow-neo-xs) !important;
+        background-color: var(--color-neo-white) !important;
+        overflow: hidden !important;
+    }
+
+    .fi-progress-bar,
+    [role="progressbar"] > div {
+        background-color: var(--color-neo-teal) !important;
+        border-right: 3px solid var(--color-neo-black) !important;
+        transition: width 0.3s ease !important;
+    }
+
+    /* ━━━ GLOBAL UTILITY CLASSES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /* Separator stripe (from kit) */
     .sep-stripe {
         height: 8px;
         background-image: repeating-linear-gradient(
             90deg,
-            var(--color-neo-black) 0px,
-            var(--color-neo-black) 6px,
-            var(--color-neo-white) 6px,
-            var(--color-neo-white) 12px
+            var(--color-neo-black) 0px, var(--color-neo-black) 6px,
+            transparent             6px, transparent              12px
         );
         border-top: 2px solid var(--color-neo-black);
         border-bottom: 2px solid var(--color-neo-black);
     }
 
-    .section-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: var(--font-heading);
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
+    /* Utility neo classes matching the kit */
+    .neo-border    { border: 4px solid var(--color-neo-black); }
+    .neo-border-sm { border: 2px solid var(--color-neo-black); }
 
-    .section-tag .num {
-        background: var(--color-neo-black);
-        color: var(--color-neo-white);
-        padding: 0.1rem 0.4rem;
-        font-size: 0.6rem;
-    }
+    .shadow-neo-xs { box-shadow: var(--shadow-neo-xs); }
+    .shadow-neo-sm { box-shadow: var(--shadow-neo-sm); }
+    .shadow-neo    { box-shadow: var(--shadow-neo); }
+    .shadow-neo-lg { box-shadow: var(--shadow-neo-lg); }
+    .shadow-neo-xl { box-shadow: var(--shadow-neo-xl); }
 
-    .fi-section {
-        border: 4px solid var(--color-neo-black) !important;
-        box-shadow: 4px 4px 0px 0px var(--color-neo-black) !important;
-        border-radius: 0 !important;
-    }
-
-    .fi-section-title {
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-    }
-
-    .fi-empty-state {
-        border: 2px dashed var(--color-neo-black) !important;
-        padding: 2rem !important;
-    }
-
-    .fi-empty-state-title {
-        font-family: var(--font-heading) !important;
-        text-transform: uppercase !important;
-    }
-}
-
-@layer utilities {
-    .bg-neo-bg { background-color: var(--color-neo-bg); }
-    .bg-neo-teal { background-color: var(--color-neo-teal); }
+    .bg-neo-bg      { background-color: var(--color-neo-bg); }
+    .bg-neo-teal    { background-color: var(--color-neo-teal); }
     .bg-neo-magenta { background-color: var(--color-neo-magenta); }
-    .bg-neo-yellow { background-color: var(--color-neo-yellow); }
-    .bg-neo-green { background-color: var(--color-neo-green); }
-    .bg-neo-salmon { background-color: var(--color-neo-salmon); }
-    .bg-neo-purple { background-color: var(--color-neo-purple); }
-    .bg-neo-white { background-color: var(--color-neo-white); }
+    .bg-neo-yellow  { background-color: var(--color-neo-yellow); }
+    .bg-neo-green   { background-color: var(--color-neo-green); }
+    .bg-neo-salmon  { background-color: var(--color-neo-salmon); }
+    .bg-neo-purple  { background-color: var(--color-neo-purple); }
+    .bg-neo-white   { background-color: var(--color-neo-white); }
 
-    .text-neo-teal { color: var(--color-neo-teal); }
-    .text-neo-magenta { color: var(--color-neo-magenta); }
-    .text-neo-yellow { color: var(--color-neo-yellow); }
-    .text-neo-green { color: var(--color-neo-green); }
-
-    .border-neo-teal { border-color: var(--color-neo-teal); }
-    .border-neo-magenta { border-color: var(--color-neo-magenta); }
-    .border-neo-yellow { border-color: var(--color-neo-yellow); }
-    .border-neo-green { border-color: var(--color-neo-green); }
-
-    .font-body { font-family: var(--font-mono); }
     .font-heading { font-family: var(--font-heading); }
+    .font-body    { font-family: var(--font-mono); }
+
+    /* Interactive neo primitives */
+    .btn-neo {
+        border: 3px solid var(--color-neo-black);
+        box-shadow: var(--shadow-neo-sm);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: all 0.1s ease;
+    }
+
+    .btn-neo:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: var(--shadow-neo);
+    }
+
+    .btn-neo:active {
+        transform: translate(3px, 3px);
+        box-shadow: none;
+    }
+
+    .card-neo {
+        border: 4px solid var(--color-neo-black);
+        box-shadow: var(--shadow-neo);
+        transition: all 0.12s ease;
+    }
+
+    .card-neo:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: var(--shadow-neo-lg);
+    }
+
+    .input-neo {
+        border: 3px solid var(--color-neo-black);
+        box-shadow: var(--shadow-neo-xs);
+        font-family: var(--font-mono);
+    }
+
+    .input-neo:focus {
+        border-color: var(--color-neo-magenta);
+        box-shadow: var(--shadow-neo);
+        outline: none;
+    }
 }
 
-@keyframes wiggle {
-    0%, 100% { transform: rotate(-1deg); }
-    50% { transform: rotate(1deg); }
+/* ─── CODE WINDOW — Mac chrome + PhpStorm syntax ─────────────────────────── */
+@layer components {
+
+    /* Window frame */
+    .neo-code-window {
+        font-family: var(--font-mono);
+        font-size: .8rem;
+        line-height: 1.65;
+    }
+
+    /* Title bar */
+    .neo-code-titlebar {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+        padding: .5rem .875rem;
+        background: #2b2b2b;
+        border-bottom: 3px solid var(--color-neo-black);
+    }
+
+    /* Traffic light dots */
+    .neo-code-dots {
+        display: flex;
+        gap: .375rem;
+        flex-shrink: 0;
+    }
+
+    .neo-code-dot {
+        width: .75rem;
+        height: .75rem;
+        border-radius: 50%;
+        border: 1.5px solid rgba(0,0,0,.35);
+        display: inline-block;
+        flex-shrink: 0;
+    }
+
+    /* Filename */
+    .neo-code-filename {
+        flex: 1;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: .65rem;
+        color: #888;
+        letter-spacing: .04em;
+    }
+
+    /* Lang badge */
+    .neo-code-lang {
+        font-family: var(--font-heading);
+        font-size: .55rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        color: #555;
+        background: #1e1f22;
+        border: 1px solid #333;
+        padding: .1rem .375rem;
+    }
+
+    /* Code area */
+    .neo-code-body {
+        background: #1e1f22;
+        overflow-x: auto;
+    }
+
+    .neo-code-pre {
+        margin: 0;
+        padding: 1.125rem 1.25rem;
+        background: transparent;
+        font-family: var(--font-mono);
+        font-size: .78rem;
+        line-height: 1.7;
+        color: #a9b7c6;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    /* ── PhpStorm Dark color scheme (hljs-* tokens) ── */
+    .hljs-comment,
+    .hljs-quote          { color: #629755; font-style: italic; }
+
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-tag            { color: #cc7832; }
+
+    .hljs-string,
+    .hljs-addition       { color: #6a8759; }
+
+    .hljs-number,
+    .hljs-literal        { color: #6897bb; }
+
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-deletion       { color: #9876aa; }
+
+    .hljs-title,
+    .hljs-function,
+    .hljs-built_in       { color: #ffc66d; }
+
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-selector-class { color: #a9b7c6; }
+
+    .hljs-meta,
+    .hljs-doctag         { color: #bbb529; }
+
+    .hljs-type,
+    .hljs-class          { color: #ffc66d; }
+
+    .hljs-section,
+    .hljs-name           { color: #e8bf6a; }
+
+    .hljs-symbol,
+    .hljs-bullet,
+    .hljs-link           { color: #9876aa; }
+
+    .hljs-emphasis       { font-style: italic; }
+    .hljs-strong         { font-weight: bold; }
+
+    /* bash-specific */
+    .language-bash .hljs-built_in  { color: #ffc66d; }
+    .language-bash .hljs-comment   { color: #629755; font-style: italic; }
+    .language-bash .hljs-variable  { color: #9876aa; }
+    .language-bash .hljs-string    { color: #6a8759; }
+    .language-bash .hljs-number    { color: #6897bb; }
+
+    /* Line numbers gutter (optional future use) */
+    .neo-code-pre .line-number {
+        color: #444;
+        user-select: none;
+        margin-right: 1rem;
+        display: inline-block;
+        min-width: 1.5rem;
+        text-align: right;
+    }
 }
 
-@keyframes bounce-in {
-    0% { transform: scale(0.9); opacity: 0; }
-    70% { transform: scale(1.05); opacity: 1; }
+/* ─── ANIMATIONS ──────────────────────────────────────────────────────────── */
+@keyframes neo-bounce-in {
+    0%   { transform: scale(0.9) translate(4px, 4px); opacity: 0; }
+    60%  { transform: scale(1.04); opacity: 1; }
     100% { transform: scale(1); }
 }
 
-@keyframes fade-in-up {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+@keyframes neo-slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-    20%, 40%, 60%, 80% { transform: translateX(4px); }
+@keyframes neo-wiggle {
+    0%, 100% { transform: rotate(-1.5deg); }
+    50%       { transform: rotate(1.5deg); }
 }
 
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+@keyframes neo-shake {
+    0%, 100%                   { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90%   { transform: translateX(-4px); }
+    20%, 40%, 60%, 80%        { transform: translateX(4px); }
+}
+
+@keyframes neo-pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.12); }
     100% { transform: scale(1); }
 }
 
-.animate-wiggle { animation: wiggle 0.3s ease-in-out; }
-.animate-bounce-in { animation: bounce-in 0.5s ease-out forwards; }
-.animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
-.animate-shake { animation: shake 0.5s ease-in-out; }
-.animate-pop { animation: pop 0.3s ease-in-out; }
+@keyframes neo-stripe-scroll {
+    from { background-position: 0 0; }
+    to   { background-position: 24px 0; }
+}
+
+.animate-neo-bounce-in { animation: neo-bounce-in 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-neo-slide-up  { animation: neo-slide-up 0.5s ease-out forwards; }
+.animate-neo-wiggle    { animation: neo-wiggle 0.35s ease-in-out; }
+.animate-neo-shake     { animation: neo-shake 0.5s ease-in-out; }
+.animate-neo-pop       { animation: neo-pop 0.3s ease-in-out; }
+
+/* ─── DARK MODE — disabled (neo-brutalist is always light on cream) ────────── */
+/* Filament ships dark mode; we suppress it for this aesthetic */
+.dark .fi-sidebar,
+.dark .fi-main,
+.dark .fi-topbar,
+.dark .fi-page-header {
+    background-color: var(--color-neo-bg) !important;
+    color: var(--color-neo-black) !important;
+}

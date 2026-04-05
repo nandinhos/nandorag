@@ -18,6 +18,9 @@ class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
 
+    protected static ?string $label = 'Documento';
+    protected static ?string $pluralLabel = 'Documentos';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     public static function form(Schema $schema): Schema

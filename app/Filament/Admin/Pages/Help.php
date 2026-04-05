@@ -2,22 +2,41 @@
 
 namespace App\Filament\Admin\Pages;
 
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Http;
 
 class Help extends Page
 {
+    protected static ?string $title = 'Ajuda & Status';
+
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedQuestionMarkCircle;
 
     protected static ?int $navigationSort = 3;
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('back')
+                ->label('Voltar')
+                ->color('purple')
+                ->icon(Heroicon::ChevronLeft)
+                ->url(url()->previous())
+                ->extraAttributes(['class' => 'neo-border-sm shadow-neo-xs font-heading']),
+        ];
+    }
+
     protected string $view = 'filament.admin.pages.help';
 
     public bool $ollamaConnected = false;
+
     public bool $embeddingModelAvailable = false;
+
     public bool $chatModelAvailable = false;
+
     public string $ollamaError = '';
+
     public array $availableModels = [];
 
     public function mount(): void
