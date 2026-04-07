@@ -2,7 +2,6 @@
 
 namespace App\Filament\Admin\Resources\Documents\Schemas;
 
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
@@ -21,61 +20,16 @@ class DocumentForm
             ])
             ->schema([
                 Section::make('Upload')
-                    ->label('Upload de Arquivo')
-                    ->columnSpan([
-                        'default' => 1,
-                        'md' => 2,
-                    ])
+                    ->label('Arquivo')
+                    ->columnSpan(['default' => 1, 'md' => 2])
                     ->schema([
-                        FileUpload::make('file_path')
-                            ->label('Arquivo do Documento')
-                            ->disk('local')
-                            ->directory('documents')
-                            ->acceptedFileTypes([
-                                'application/pdf',
-                                'text/plain',
-                                'text/markdown',
-                                'text/x-markdown',
-                            ])
-                            ->maxSize(10240)
-                            ->required()
-                            ->hiddenOn('edit')
-                            ->live()
-                            ->columnSpanFull()
-                            ->afterStateUpdated(function ($state, callable $set) {
-                                if (! $state) {
-                                    return;
-                                }
-
-                                $file = is_array($state)
-                                    ? (array_values($state)[0] ?? null)
-                                    : $state;
-
-                                if (! is_object($file) || ! method_exists($file, 'getClientOriginalName')) {
-                                    return;
-                                }
-
-                                $filename = $file->getClientOriginalName();
-
-                                if ($filename) {
-                                    $set('filename', $filename);
-                                    $set('original_filename', $filename);
-                                    $set('tags', [$filename]);
-                                }
-                            }),
-
                         TextInput::make('filename')
                             ->label('Nome do Arquivo')
-                            ->required(),
-
-                        TextInput::make('original_filename')
-                            ->label('Nome Original')
                             ->required()
-                            ->hiddenOn('edit'),
-                    ])->columns([
-                        'default' => 1,
-                        'sm' => 2,
-                    ]),
+                            ->disabled()
+                            ->columnSpanFull(),
+                    ])
+                    ->visibleOn('edit'),
 
                 Section::make('Metadata')
                     ->label('Metadados')
