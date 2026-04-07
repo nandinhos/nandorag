@@ -214,16 +214,36 @@ return [
 
     'environments' => [
         'production' => [
-            'supervisor-1' => [
-                'maxProcesses' => 10,
-                'balanceMaxShift' => 1,
-                'balanceCooldown' => 3,
+            'documents-supervisor' => [
+                'connection' => 'redis',
+                'queue' => ['priority', 'documents'],
+                'balance' => 'simple',
+                'processes' => 1,
+                'timeout' => 600,
+                'tries' => 3,
+                'minProcesses' => 1,
+                'maxProcesses' => 1,
+            ],
+            'embeddings-supervisor' => [
+                'connection' => 'redis',
+                'queue' => ['priority', 'embeddings'],
+                'balance' => 'auto',
+                'processes' => 2,
+                'timeout' => 300,
+                'tries' => 3,
+                'minProcesses' => 1,
+                'maxProcesses' => 4,
             ],
         ],
 
         'local' => [
-            'supervisor-1' => [
-                'maxProcesses' => 3,
+            'local-supervisor' => [
+                'connection' => 'redis',
+                'queue' => ['priority', 'documents', 'embeddings'],
+                'balance' => 'simple',
+                'processes' => 1,
+                'timeout' => 600,
+                'tries' => 3,
             ],
         ],
     ],
