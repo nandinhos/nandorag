@@ -8,6 +8,7 @@ use App\Services\DocumentImportService;
 use App\Services\Parsers\PdfDocumentParser;
 use App\Services\Parsers\TextDocumentParser;
 use Illuminate\Support\ServiceProvider;
+use TusPhp\Tus\Server;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->singleton(Server::class, function () {
+            $server = new Server('redis');
+
+            $server->setApiPath('/tus/upload');
+            $server->setUploadDir(storage_path('app/private/tus-temp'));
+            $server->setMaxUploadSize(500 * 1024 * 1024); // 500MB
+
+            return $server;
+        });
+
         $this->app->bind(EmbeddingEngine::class, OllamaEmbeddingAdapter::class);
 
         $this->app->when(DocumentImportService::class)
