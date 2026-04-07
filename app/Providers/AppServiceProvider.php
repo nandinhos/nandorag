@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Contracts\EmbeddingEngine;
+use App\Livewire\TusUpload;
 use App\Services\Adapters\OllamaEmbeddingAdapter;
 use App\Services\DocumentImportService;
 use App\Services\Parsers\PdfDocumentParser;
 use App\Services\Parsers\TextDocumentParser;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 use TusPhp\Tus\Server;
 
 class AppServiceProvider extends ServiceProvider
@@ -44,6 +46,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Livewire::component('tus-upload', TusUpload::class);
     }
 }
