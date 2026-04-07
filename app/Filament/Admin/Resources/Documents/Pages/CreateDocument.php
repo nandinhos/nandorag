@@ -11,7 +11,7 @@ class CreateDocument extends Page
 {
     protected static string $resource = DocumentResource::class;
 
-    protected static string $view = 'filament.resources.documents.pages.create-document';
+    protected string $view = 'filament.resources.documents.pages.create-document';
 
     protected function getHeaderActions(): array
     {
