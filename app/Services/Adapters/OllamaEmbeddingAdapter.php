@@ -14,10 +14,14 @@ class OllamaEmbeddingAdapter implements EmbeddingEngine
      */
     public function generate(string $text): array
     {
-        $response = Embeddings::for([$text])
-            ->generate();
+        return $this->generateBatch([$text])[0] ?? [];
+    }
 
-        return $response->first() ?? [];
+    public function generateBatch(array $texts): array
+    {
+        return Embeddings::for($texts)
+            ->generate()
+            ->embeddings;
     }
 
     /**
