@@ -1,0 +1,71 @@
+- generic [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Chats" [level=1] [ref=e49]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - button "New Chat" [ref=e54] [cursor=pointer]:
+              - img [ref=e55]
+              - text: New Chat
+            - generic [ref=e57]:
+              - button "Lideranca" [ref=e59] [cursor=pointer]
+              - button "hope" [ref=e61] [cursor=pointer]
+              - button "Teste" [ref=e63] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - generic [ref=e66]:
+                - heading "Lideranca" [level=3] [ref=e67]
+                - paragraph [ref=e68]: "Scoped to: LIDERANÇA E EQUIPES.pdf"
+              - generic [ref=e69]:
+                - generic [ref=e70]: "Model:"
+                - combobox [ref=e71]:
+                  - option "nomic-embed-text:latest (261.6 MB)"
+                  - option "llama3.2:3b (1.9 GB)" [selected]
+                  - option "minimax-m2.5:cloud (337 B)"
+                  - option "qwen3:8b (4.9 GB)"
+                  - option "deepseek-r1:8b (4.9 GB)"
+                  - option "qwen3-coder:30b (17.3 GB)"
+            - generic [ref=e72]:
+              - paragraph [ref=e76]: quero um resumo sobre o tema
+              - paragraph [ref=e80]: Sorry, I encountered an error generating a response. Please check that Ollama is running.
+              - paragraph [ref=e84]: tipos de lideranca
+              - paragraph [ref=e88]: Sorry, I encountered an error generating a response. Please check that Ollama is running.
+            - generic [ref=e90]:
+              - textbox "Type your message..." [active] [ref=e91]
+              - button "Send" [ref=e92] [cursor=pointer]
+  - generic:
+    - status

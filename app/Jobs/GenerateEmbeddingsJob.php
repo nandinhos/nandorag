@@ -40,26 +40,49 @@ class GenerateEmbeddingsJob implements ShouldQueue
             $processed = $document->processed_chunks;
 
             foreach ($chunks->chunk(self::BATCH_SIZE) as $batch) {
-                foreach ($batch as $chunk) {
-                    $chunkText = mb_convert_encoding($chunk->content, 'UTF-8', 'UTF-8');
-                    $chunkText = preg_replace('/[\x00-\x1F\x7F]/u', '', $chunkText);
-
-                    if (strlen($chunkText) > 2000) {
-                        $chunkText = substr($chunkText, 0, 2000);
+                try {
+                    $texts = [];
+                    foreach ($batch as $chunk) {
+                        $chunkText = mb_convert_encoding($chunk->content, 'UTF-8', 'UTF-8');
+                        $chunkText = preg_replace('/[\x00-\x1F\x7F]/u', '', $chunkText);
+                        
+                        if (strlen($chunkText) > 2000) {
+                            $chunkText = substr($chunkText, 0, 2000);
+                        }
+                        $texts[] = $chunkText;
                     }
 
-                    $embedding = $embeddingService->generateEmbedding($chunkText);
+                    $embeddings = $embeddingService->generateBatch($texts);
 
-                    $chunk->update(['embedding' => $embedding]);
-                    $processed++;
+                    foreach ($batch as $index => $chunk) {
+                        if (isset($embeddings[$index])) {
+                            $chunk->update(['embedding' => $embeddings[$index]]);
+                            $processed++;
+                        }
+                    }
+
+                    $progress = $total > 0 ? (int) round($processed / $total * 100) : 100;
+
+                    $document->update([
+                        'processed_chunks' => $processed,
+                        'progress' => $progress,
+                    ]);
+
+                } catch (\Throwable $batchError) {
+                    Log::warning("Batch processing failed for document #{$document->id}, trying individual chunks fallback: " . $batchError->getMessage());
+                    
+                    // Fallback para processamento individual se o batch falhar (ex: um texto específico corrompido)
+                    foreach ($batch as $chunk) {
+                         try {
+                            $chunkText = substr($chunk->content, 0, 2000);
+                            $embedding = $embeddingService->generateEmbedding($chunkText);
+                            $chunk->update(['embedding' => $embedding]);
+                            $processed++;
+                         } catch (\Throwable $singleError) {
+                            Log::error("Individual chunk fallback failed: " . $singleError->getMessage());
+                         }
+                    }
                 }
-
-                $progress = $total > 0 ? (int) round($processed / $total * 100) : 100;
-
-                $document->update([
-                    'processed_chunks' => $processed,
-                    'progress' => $progress,
-                ]);
             }
 
             $document->update([

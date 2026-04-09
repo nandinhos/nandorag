@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar"
+    - link "NandoRAG" [ref=e6] [cursor=pointer]:
+      - /url: http://localhost:8000/admin
+      - generic [ref=e7]: NandoRAG
+    - button "User menu" [ref=e11]:
+      - img "Avatar of Nando" [ref=e12]
+  - generic [ref=e13]:
+    - complementary [ref=e15]:
+      - link "NandoRAG" [ref=e19] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e20]: NandoRAG
+      - navigation [ref=e21]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - list [ref=e24]:
+              - listitem [ref=e25]:
+                - link "Dashboard" [ref=e26] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e27]
+                  - generic [ref=e29]: Dashboard
+              - listitem [ref=e30]:
+                - link "Documents" [ref=e31] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e32]
+                  - generic [ref=e34]: Documents
+              - listitem [ref=e35]:
+                - link "Chats" [ref=e36] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e37]
+                  - generic [ref=e39]: Chats
+              - listitem [ref=e40]:
+                - link "Help" [ref=e41] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e42]
+                  - generic [ref=e44]: Help
+    - main [ref=e46]:
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - navigation [ref=e51]:
+              - list [ref=e52]:
+                - listitem [ref=e53]:
+                  - link "Documents" [ref=e54] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents
+                - listitem [ref=e55]:
+                  - img [ref=e56]
+                  - img [ref=e58]
+                  - text: List
+            - heading "Documents" [level=1] [ref=e60]
+          - link "New document" [ref=e63] [cursor=pointer]:
+            - /url: http://localhost:8000/admin/documents/create
+        - generic [ref=e71]:
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - text: Search
+              - generic [ref=e76]:
+                - img [ref=e78]
+                - searchbox "Search" [ref=e81]
+            - button "Filter" [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e87]: "0"
+          - table [ref=e89]:
+            - rowgroup [ref=e90]:
+              - row "Select/deselect all items for bulk actions. Filename Type Tags Status Chunks Created at Action" [ref=e91]:
+                - columnheader "Select/deselect all items for bulk actions." [ref=e92]:
+                  - checkbox "Select/deselect all items for bulk actions." [ref=e93]
+                - columnheader "Filename" [ref=e94]:
+                  - button "Filename" [ref=e95]:
+                    - text: Filename
+                    - img [ref=e96]
+                - columnheader "Type" [ref=e98]:
+                  - button "Type" [ref=e99]:
+                    - text: Type
+                    - img [ref=e100]
+                - columnheader "Tags" [ref=e102]
+                - columnheader "Status" [ref=e103]:
+                  - button "Status" [ref=e104]:
+                    - text: Status
+                    - img [ref=e105]
+                - columnheader "Chunks" [ref=e107]:
+                  - button "Chunks" [ref=e108]:
+                    - text: Chunks
+                    - img [ref=e109]
+                - columnheader "Created at" [ref=e111]:
+                  - button "Created at" [ref=e112]:
+                    - text: Created at
+                    - img [ref=e113]
+                - columnheader "Action" [ref=e115]
+            - rowgroup [ref=e116]:
+              - row "Select/deselect item 5 for bulk actions. GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf application/pdf GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf Completed 51 Apr 4, 2026 06:41:56 Edit" [ref=e117]:
+                - cell "Select/deselect item 5 for bulk actions." [ref=e118]:
+                  - checkbox "Select/deselect item 5 for bulk actions." [ref=e119]
+                - cell "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e120]:
+                  - link "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e121] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e122]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - cell "application/pdf" [ref=e123]:
+                  - link "application/pdf" [ref=e124] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e125]: application/pdf
+                - cell "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e126]:
+                  - link "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e127] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e128]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - cell "Completed" [ref=e129]:
+                  - link "Completed" [ref=e130] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e132]:
+                      - img [ref=e133]
+                      - text: Completed
+                - cell "51" [ref=e135]:
+                  - link "51" [ref=e136] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e137]: "51"
+                - cell "Apr 4, 2026 06:41:56" [ref=e138]:
+                  - link "Apr 4, 2026 06:41:56" [ref=e139] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - generic [ref=e140]: Apr 4, 2026 06:41:56
+                - cell "Edit" [ref=e141]:
+                  - link "Edit" [ref=e143] [cursor=pointer]:
+                    - /url: http://localhost:8000/admin/documents/5/edit
+                    - img [ref=e144]
+                    - text: Edit
+          - navigation "Pagination navigation" [ref=e147]:
+            - text: Showing 1 result
+            - generic [ref=e148]:
+              - generic [ref=e149]:
+                - combobox "Per page" [ref=e152]:
+                  - option "5"
+                  - option "10" [selected]
+                  - option "25"
+                  - option "50"
+                - text: Per page
+              - generic [ref=e154]:
+                - generic [ref=e155]: Per page
+                - combobox "Per page" [ref=e157]:
+                  - option "5"
+                  - option "10" [selected]
+                  - option "25"
+                  - option "50"
+  - generic:
+    - status

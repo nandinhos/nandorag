@@ -1,0 +1,41 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar"
+    - link "NandoRAG" [ref=e6] [cursor=pointer]:
+      - /url: http://localhost:8000/admin
+      - generic [ref=e7]: NandoRAG
+    - button "User menu" [ref=e11]:
+      - img "Avatar of Nando" [ref=e12]
+  - generic [ref=e13]:
+    - complementary [ref=e15]:
+      - link "NandoRAG" [ref=e19] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e20]: NandoRAG
+      - navigation [ref=e21]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - list [ref=e24]:
+              - listitem [ref=e25]:
+                - link "Dashboard" [ref=e26] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e27]
+                  - generic [ref=e29]: Dashboard
+              - listitem [ref=e30]:
+                - link "Documents" [ref=e31] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e32]
+                  - generic [ref=e34]: Documents
+              - listitem [ref=e35]:
+                - link "Chats" [ref=e36] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e37]
+                  - generic [ref=e39]: Chats
+              - listitem [ref=e40]:
+                - link "Help" [ref=e41] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e42]
+                  - generic [ref=e44]: Help
+    - main [ref=e46]:
+      - heading "Dashboard" [level=1] [ref=e51]
+  - generic:
+    - status

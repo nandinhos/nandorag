@@ -1,0 +1,235 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - heading "Documents" [level=1] [ref=e49]
+          - link "New document" [ref=e52] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/admin/documents/create
+        - generic [ref=e60]:
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - generic [ref=e65]: Search
+              - generic [ref=e66]:
+                - img [ref=e68]
+                - searchbox "Search" [ref=e71]
+            - button "Filter" [ref=e74] [cursor=pointer]:
+              - img [ref=e75]
+              - generic [ref=e78]: "0"
+          - table [ref=e80]:
+            - rowgroup [ref=e81]:
+              - row "Select/deselect all items for bulk actions. Filename Type Tags Status Chunks Created at Action" [ref=e82]:
+                - columnheader "Select/deselect all items for bulk actions." [ref=e83]:
+                  - checkbox "Select/deselect all items for bulk actions." [ref=e84]
+                - columnheader "Filename" [ref=e85]:
+                  - button "Filename" [ref=e86] [cursor=pointer]:
+                    - text: Filename
+                    - img [ref=e87]
+                - columnheader "Type" [ref=e89]:
+                  - button "Type" [ref=e90] [cursor=pointer]:
+                    - text: Type
+                    - img [ref=e91]
+                - columnheader "Tags" [ref=e93]
+                - columnheader "Status" [ref=e94]:
+                  - button "Status" [ref=e95] [cursor=pointer]:
+                    - text: Status
+                    - img [ref=e96]
+                - columnheader "Chunks" [ref=e98]:
+                  - button "Chunks" [ref=e99] [cursor=pointer]:
+                    - text: Chunks
+                    - img [ref=e100]
+                - columnheader "Created at" [ref=e102]:
+                  - button "Created at" [ref=e103] [cursor=pointer]:
+                    - text: Created at
+                    - img [ref=e104]
+                - columnheader "Action" [ref=e106]
+            - rowgroup [ref=e107]:
+              - row "Select/deselect item 5 for bulk actions. GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf application/pdf GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf Completed 51 Apr 4, 2026 06:41:56 Edit" [ref=e108]:
+                - cell "Select/deselect item 5 for bulk actions." [ref=e109]:
+                  - checkbox "Select/deselect item 5 for bulk actions." [ref=e110]
+                - cell "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e111]:
+                  - link "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e112] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e113]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - cell "application/pdf" [ref=e114]:
+                  - link "application/pdf" [ref=e115] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e116]: application/pdf
+                - cell "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e117]:
+                  - link "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e118] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e120]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - cell "Completed" [ref=e121]:
+                  - link "Completed" [ref=e122] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e124]:
+                      - img [ref=e125]
+                      - text: Completed
+                - cell "51" [ref=e127]:
+                  - link "51" [ref=e128] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e129]: "51"
+                - cell "Apr 4, 2026 06:41:56" [ref=e130]:
+                  - link "Apr 4, 2026 06:41:56" [ref=e131] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - generic [ref=e132]: Apr 4, 2026 06:41:56
+                - cell "Edit" [ref=e133]:
+                  - link "Edit" [ref=e135] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/5/edit
+                    - img [ref=e136]
+                    - text: Edit
+              - row "Select/deselect item 6 for bulk actions. CAO - caracteristicas_organizacionais 2026.pdf application/pdf CAO - caracteristicas_organizacionais 2026.pdf CAO Completed 45 Apr 4, 2026 07:13:05 Edit" [ref=e139]:
+                - cell "Select/deselect item 6 for bulk actions." [ref=e140]:
+                  - checkbox "Select/deselect item 6 for bulk actions." [ref=e141]
+                - cell "CAO - caracteristicas_organizacionais 2026.pdf" [ref=e142]:
+                  - link "CAO - caracteristicas_organizacionais 2026.pdf" [ref=e143] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - generic [ref=e144]: CAO - caracteristicas_organizacionais 2026.pdf
+                - cell "application/pdf" [ref=e145]:
+                  - link "application/pdf" [ref=e146] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - generic [ref=e147]: application/pdf
+                - cell "CAO - caracteristicas_organizacionais 2026.pdf CAO" [ref=e148]:
+                  - link "CAO - caracteristicas_organizacionais 2026.pdf CAO" [ref=e149] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - list [ref=e150]:
+                      - listitem [ref=e151]:
+                        - generic [ref=e152]: CAO - caracteristicas_organizacionais 2026.pdf
+                      - listitem [ref=e153]:
+                        - generic [ref=e154]: CAO
+                - cell "Completed" [ref=e155]:
+                  - link "Completed" [ref=e156] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - generic [ref=e158]:
+                      - img [ref=e159]
+                      - text: Completed
+                - cell "45" [ref=e161]:
+                  - link "45" [ref=e162] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - generic [ref=e163]: "45"
+                - cell "Apr 4, 2026 07:13:05" [ref=e164]:
+                  - link "Apr 4, 2026 07:13:05" [ref=e165] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - generic [ref=e166]: Apr 4, 2026 07:13:05
+                - cell "Edit" [ref=e167]:
+                  - link "Edit" [ref=e169] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/6/edit
+                    - img [ref=e170]
+                    - text: Edit
+              - row "Select/deselect item 7 for bulk actions. PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf application/pdf PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf Completed 62 Apr 4, 2026 07:14:04 Edit" [ref=e173]:
+                - cell "Select/deselect item 7 for bulk actions." [ref=e174]:
+                  - checkbox "Select/deselect item 7 for bulk actions." [ref=e175]
+                - cell "PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf" [ref=e176]:
+                  - link "PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf" [ref=e177] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e178]: PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf
+                - cell "application/pdf" [ref=e179]:
+                  - link "application/pdf" [ref=e180] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e181]: application/pdf
+                - cell "PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf" [ref=e182]:
+                  - link "PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf" [ref=e183] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e185]: PROCESSOS AVALIATIVOS E INOVAÇÃO.pdf
+                - cell "Completed" [ref=e186]:
+                  - link "Completed" [ref=e187] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e189]:
+                      - img [ref=e190]
+                      - text: Completed
+                - cell "62" [ref=e192]:
+                  - link "62" [ref=e193] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e194]: "62"
+                - cell "Apr 4, 2026 07:14:04" [ref=e195]:
+                  - link "Apr 4, 2026 07:14:04" [ref=e196] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - generic [ref=e197]: Apr 4, 2026 07:14:04
+                - cell "Edit" [ref=e198]:
+                  - link "Edit" [ref=e200] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/7/edit
+                    - img [ref=e201]
+                    - text: Edit
+              - row "Select/deselect item 8 for bulk actions. LIDERANÇA E EQUIPES.pdf application/pdf LIDERANÇA E EQUIPES.pdf Liderança equipes Completed 35 Apr 4, 2026 07:15:36 Edit" [ref=e204]:
+                - cell "Select/deselect item 8 for bulk actions." [ref=e205]:
+                  - checkbox "Select/deselect item 8 for bulk actions." [ref=e206]
+                - cell "LIDERANÇA E EQUIPES.pdf" [ref=e207]:
+                  - link "LIDERANÇA E EQUIPES.pdf" [ref=e208] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - generic [ref=e209]: LIDERANÇA E EQUIPES.pdf
+                - cell "application/pdf" [ref=e210]:
+                  - link "application/pdf" [ref=e211] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - generic [ref=e212]: application/pdf
+                - cell "LIDERANÇA E EQUIPES.pdf Liderança equipes" [ref=e213]:
+                  - link "LIDERANÇA E EQUIPES.pdf Liderança equipes" [ref=e214] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - list [ref=e215]:
+                      - listitem [ref=e216]:
+                        - generic [ref=e217]: LIDERANÇA E EQUIPES.pdf
+                      - listitem [ref=e218]:
+                        - generic [ref=e219]: Liderança
+                      - listitem [ref=e220]:
+                        - generic [ref=e221]: equipes
+                - cell "Completed" [ref=e222]:
+                  - link "Completed" [ref=e223] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - generic [ref=e225]:
+                      - img [ref=e226]
+                      - text: Completed
+                - cell "35" [ref=e228]:
+                  - link "35" [ref=e229] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - generic [ref=e230]: "35"
+                - cell "Apr 4, 2026 07:15:36" [ref=e231]:
+                  - link "Apr 4, 2026 07:15:36" [ref=e232] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - generic [ref=e233]: Apr 4, 2026 07:15:36
+                - cell "Edit" [ref=e234]:
+                  - link "Edit" [ref=e236] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/admin/documents/8/edit
+                    - img [ref=e237]
+                    - text: Edit
+          - navigation "Pagination navigation" [ref=e240]:
+            - generic [ref=e243]:
+              - generic [ref=e245]: Per page
+              - combobox "Per page" [ref=e247]:
+                - option "5"
+                - option "10" [selected]
+                - option "25"
+                - option "50"
+  - generic:
+    - status

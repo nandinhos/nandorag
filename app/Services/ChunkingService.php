@@ -5,6 +5,7 @@ namespace App\Services;
 class ChunkingService
 {
     private int $chunkSize;
+
     private int $chunkOverlap;
 
     public function __construct()

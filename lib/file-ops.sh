@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # ============================================================================
-# AI Dev Superpowers V3 - File Operations Module
+# DEVORQ V3 - File Operations Module
 # ============================================================================
 # Funções para operações de arquivo e diretório
 # 
 # Uso: source lib/file-ops.sh
 # Dependências: lib/core.sh
 # ============================================================================
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then echo "ERRO: Este módulo deve ser carregado via 'source', não executado." >&2; exit 1; fi
 
 # Variáveis de controle de comportamento
-AIDEV_DRY_RUN="${AIDEV_DRY_RUN:-false}"
-AIDEV_FORCE="${AIDEV_FORCE:-false}"
+DEVORQ_DRY_RUN="${DEVORQ_DRY_RUN:-false}"
+DEVORQ_FORCE="${DEVORQ_FORCE:-false}"
 
 # ============================================================================
 # Operações de Diretório
@@ -27,7 +28,7 @@ ensure_dir() {
         return 1
     fi
     
-    if [ "$AIDEV_DRY_RUN" = "true" ]; then
+    if [ "$DEVORQ_DRY_RUN" = "true" ]; then
         print_info "[DRY-RUN] Criaria diretório: $dir"
         return 0
     fi
@@ -65,12 +66,12 @@ write_file() {
         return 1
     fi
     
-    if [ "$AIDEV_DRY_RUN" = "true" ]; then
+    if [ "$DEVORQ_DRY_RUN" = "true" ]; then
         print_info "[DRY-RUN] Criaria arquivo: $file"
         return 0
     fi
     
-    if [ -f "$file" ] && [ "$AIDEV_FORCE" = "false" ]; then
+    if [ -f "$file" ] && [ "$DEVORQ_FORCE" = "false" ]; then
         print_warning "Arquivo existe (use --force): $file"
         return 0
     fi
@@ -95,12 +96,12 @@ write_file_exact() {
         return 1
     fi
     
-    if [ "$AIDEV_DRY_RUN" = "true" ]; then
+    if [ "$DEVORQ_DRY_RUN" = "true" ]; then
         print_info "[DRY-RUN] Criaria arquivo: $file"
         return 0
     fi
     
-    if [ -f "$file" ] && [ "$AIDEV_FORCE" = "false" ]; then
+    if [ -f "$file" ] && [ "$DEVORQ_FORCE" = "false" ]; then
         print_warning "Arquivo existe (use --force): $file"
         return 0
     fi
@@ -123,7 +124,7 @@ backup_file() {
     local backup="${file}.bak.$(date +%Y%m%d%H%M%S)"
     
     if [ -f "$file" ]; then
-        if [ "$AIDEV_DRY_RUN" = "true" ]; then
+        if [ "$DEVORQ_DRY_RUN" = "true" ]; then
             print_info "[DRY-RUN] Faria backup: $file -> $backup"
             return 0
         fi
@@ -152,14 +153,14 @@ should_write_file() {
     local file="$1"
 
     # Em modo dry-run, apenas simula
-    if [ "$AIDEV_DRY_RUN" = "true" ]; then
+    if [ "$DEVORQ_DRY_RUN" = "true" ]; then
         print_info "[DRY-RUN] Verificaria arquivo: $file"
         return 1  # Não escreve em dry-run
     fi
 
     # Se upgrade module esta disponivel, delegar decisao
     if type upgrade_should_overwrite &>/dev/null 2>&1; then
-        local project_root="${AIDEV_PROJECT_ROOT:-$(pwd)}"
+        local project_root="${DEVORQ_PROJECT_ROOT:-$(pwd)}"
         upgrade_should_overwrite "$file" "$project_root"
         return $?
     fi
@@ -169,7 +170,7 @@ should_write_file() {
         return 0  # Não existe, pode escrever
     fi
 
-    if [ "$AIDEV_FORCE" = "true" ]; then
+    if [ "$DEVORQ_FORCE" = "true" ]; then
         return 0  # Force está ativo
     fi
 
@@ -191,7 +192,7 @@ copy_file() {
         return 1
     fi
     
-    if [ "$AIDEV_DRY_RUN" = "true" ]; then
+    if [ "$DEVORQ_DRY_RUN" = "true" ]; then
         print_info "[DRY-RUN] Copiaria: $src -> $dest"
         return 0
     fi

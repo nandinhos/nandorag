@@ -1,0 +1,102 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - generic [ref=e48]:
+          - navigation [ref=e49]:
+            - list [ref=e50]:
+              - listitem [ref=e51]:
+                - link "Documents" [ref=e52] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+              - listitem [ref=e53]:
+                - img [ref=e54]
+                - generic [ref=e56]: Create
+          - heading "Create Document" [level=1] [ref=e57]
+        - generic [ref=e63]:
+          - generic [ref=e67]:
+            - generic [ref=e71]:
+              - heading "Upload" [level=2] [ref=e74]
+              - generic [ref=e76]:
+                - generic [ref=e79]:
+                  - generic [ref=e83]:
+                    - text: Document File
+                    - superscript [ref=e84]: "*"
+                  - group "Document File*" [ref=e86]:
+                    - generic [ref=e142]:
+                      - button "Drag & Drop your files or Browse"
+                      - list [ref=e144]:
+                        - listitem [ref=e145]:
+                          - group "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e146]:
+                            - generic [ref=e147]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                            - generic [ref=e148]:
+                              - button "Remove" [ref=e153]:
+                                - img [ref=e154]
+                                - generic [ref=e156]: Remove
+                              - generic:
+                                - generic: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                                - generic: 862 KB
+                              - generic:
+                                - generic: Upload complete
+                                - generic: tap to undo
+                      - alert [ref=e151]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf Upload complete
+                - generic [ref=e91]:
+                  - generic [ref=e95]:
+                    - text: Filename
+                    - superscript [ref=e96]: "*"
+                  - textbox "Filename*" [ref=e100]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - generic [ref=e103]:
+                  - generic [ref=e107]:
+                    - text: Original filename
+                    - superscript [ref=e108]: "*"
+                  - textbox "Original filename*" [ref=e112]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+            - generic [ref=e116]:
+              - heading "Metadata" [level=2] [ref=e119]
+              - generic [ref=e124]:
+                - generic [ref=e128]: Tags
+                - generic [ref=e132]:
+                  - combobox "Tags" [ref=e133]
+                  - generic [ref=e159]:
+                    - generic [ref=e161]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                    - 'button "Delete: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e162] [cursor=pointer]':
+                      - img [ref=e163]
+          - generic [ref=e138]:
+            - button "Create" [disabled]:
+              - img
+              - generic: Create
+            - button "Create & create another" [ref=e141] [cursor=pointer]
+            - button "Cancel" [disabled]
+  - generic:
+    - status

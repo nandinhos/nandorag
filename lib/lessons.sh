@@ -1,6 +1,7 @@
 #!/bin/bash
 # lib/lessons.sh — Pipeline de Auto-Aprendizado
 # Captura, validação e incorporação de lições aprendidas nas skills
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then echo "ERRO: Este módulo deve ser carregado via 'source', não executado." >&2; exit 1; fi
 
 # =====================================================
 # CAPTURA DE LIÇÃO

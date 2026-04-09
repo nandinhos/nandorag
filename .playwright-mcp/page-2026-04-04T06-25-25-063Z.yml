@@ -1,0 +1,89 @@
+- generic [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Create Document" [level=1] [ref=e49]
+        - generic [ref=e55]:
+          - generic [ref=e59]:
+            - generic [ref=e63]:
+              - heading "Upload" [level=2] [ref=e66]
+              - generic [ref=e68]:
+                - generic [ref=e71]:
+                  - generic [ref=e75]:
+                    - text: Document File
+                    - superscript [ref=e76]: "*"
+                  - group "Document File*" [ref=e78]:
+                    - generic [ref=e80]:
+                      - button "Drag & Drop your files or Browse" [active]
+                      - list [ref=e84]:
+                        - listitem [ref=e140]:
+                          - group "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e141]:
+                            - generic [ref=e142]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                            - generic [ref=e143]:
+                              - button "Cancel" [ref=e144]:
+                                - generic [ref=e145]: Cancel
+                              - generic:
+                                - generic: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                                - generic: 862 KB
+                              - generic:
+                                - generic: Uploading
+                                - generic: tap to cancel
+                              - generic:
+                                - img
+                      - alert [ref=e85]
+                - generic [ref=e88]:
+                  - generic [ref=e92]:
+                    - text: Filename
+                    - superscript [ref=e93]: "*"
+                  - textbox "Filename*" [ref=e97]
+                - generic [ref=e100]:
+                  - generic [ref=e104]:
+                    - text: Original filename
+                    - superscript [ref=e105]: "*"
+                  - textbox "Original filename*" [ref=e109]
+            - generic [ref=e113]:
+              - heading "Metadata" [level=2] [ref=e116]
+              - generic [ref=e121]:
+                - generic [ref=e125]: Tags
+                - combobox "Tags" [ref=e130]
+          - generic [ref=e135]:
+            - button "Uploading file..." [disabled]:
+              - img
+              - generic: Uploading file...
+            - button "Create & create another" [ref=e138] [cursor=pointer]
+            - button "Cancel" [ref=e139] [cursor=pointer]
+  - generic:
+    - status

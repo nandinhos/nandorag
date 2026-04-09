@@ -1,6 +1,7 @@
 #!/bin/bash
 # DEVORQ - Módulo de Detecção
 # Funções de detecção de contexto, stack, LLM, tipo de projeto
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then echo "ERRO: Este módulo deve ser carregado via 'source', não executado." >&2; exit 1; fi
 
 # =====================================================
 # DETECÇÃO DE LLM
@@ -8,12 +9,6 @@
 
 detect_llm() {
     # 1. Variáveis de ambiente primárias (mais confiáveis)
-    # Gemini CLI usa GEMINI_CLI=1 ou GEMINI=true
-    if [[ "$GEMINI_CLI" == "1" ]] || [[ "$GEMINI" == "true" ]]; then
-        echo "gemini-cli"
-        return
-    fi
-
     if [[ "$CLAUDECODE" == "1" ]] || [[ "$CLAUDE_CODE_ENTRYPOINT" != "" ]]; then
         echo "claude-code"
         return

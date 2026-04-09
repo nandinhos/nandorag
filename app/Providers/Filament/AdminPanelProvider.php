@@ -9,8 +9,10 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -27,7 +29,11 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->login()
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->assets([
+                \Filament\Support\Assets\Js::make('app-scripts', Vite::asset('resources/js/app.js'))->module(),
+            ])
             ->authGuard('web')
             ->renderHook(
                 PanelsRenderHook::TOPBAR_START,
@@ -37,31 +43,6 @@ class AdminPanelProvider extends PanelProvider
                     .'<span class="neo-topbar-version">v1.0 &mdash; '.now()->format('d/m/Y H:i').'</span>'
                     .'</div>'
                 ),
-            )
-            ->renderHook(
-                PanelsRenderHook::BODY_END,
-                fn (): HtmlString => new HtmlString("
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const observer = new MutationObserver(function(mutations) {
-                                document.querySelectorAll('.fi-ta-table').forEach(table => {
-                                    const headers = Array.from(table.querySelectorAll('.fi-ta-header-cell'))
-                                        .map(th => th.innerText.trim());
-                                    
-                                    table.querySelectorAll('.fi-ta-row').forEach(row => {
-                                        row.querySelectorAll('.fi-ta-cell').forEach((cell, index) => {
-                                            if (headers[index] && !cell.hasAttribute('data-label')) {
-                                                cell.setAttribute('data-label', headers[index]);
-                                            }
-                                        });
-                                    });
-                                });
-                            });
-                            
-                            observer.observe(document.body, { childList: true, subtree: true });
-                        });
-                    </script>
-                ")
             )
             ->colors([
                 // Neo-brutalist: primary = teal (#22D3EE), mapped to cyan scale

@@ -5,8 +5,8 @@ namespace App\Filament\Admin\Resources\Documents\Pages;
 use App\Filament\Admin\Resources\Documents\DocumentResource;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
-use Filament\Support\Icons\Heroicon;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Support\Icons\Heroicon;
 
 class EditDocument extends EditRecord
 {

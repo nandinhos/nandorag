@@ -5,11 +5,11 @@ namespace App\Filament\Admin\Resources\Documents\Tables;
 use App\Enums\DocumentStatus;
 use App\Jobs\ProcessDocumentJob;
 use App\Models\Document;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -19,6 +19,7 @@ class DocumentsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->poll('5s')
             ->columns([
                 TextColumn::make('extension')
                     ->state(fn ($record) => strtoupper(pathinfo($record->filename, PATHINFO_EXTENSION) ?: 'DOC'))
@@ -78,7 +79,7 @@ class DocumentsTable
                     ->label('Filtrar por Status')
                     ->options(DocumentStatus::class),
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->label('Editar')
                     ->button()
@@ -143,7 +144,7 @@ class DocumentsTable
                     ->modalCancelAction(false)
                     ->extraAttributes(['class' => 'neo-border-sm shadow-neo-xs font-heading']),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make()
                         ->label('Excluir Selecionados'),

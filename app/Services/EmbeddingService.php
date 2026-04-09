@@ -68,6 +68,15 @@ class EmbeddingService
     }
 
     /**
+     * @param  array<string>  $texts
+     * @return array<array<float>>
+     */
+    public function generateBatch(array $texts): array
+    {
+        return $this->embeddingEngine->generateBatch($texts);
+    }
+
+    /**
      * @return array<float>
      */
     public function generateEmbedding(string $text): array

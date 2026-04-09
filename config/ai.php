@@ -99,6 +99,12 @@ return [
             'key' => env('MISTRAL_API_KEY'),
         ],
 
+        'minimax' => [
+            'driver' => 'openai',
+            'key' => env('MINIMAX_API_KEY'),
+            'url' => env('MINIMAX_URL', 'https://api.minimax.chat/v1'),
+        ],
+
         'ollama' => [
             'driver' => 'ollama',
             'key' => env('OLLAMA_API_KEY', ''),

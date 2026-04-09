@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
-use TusPhp\Events\TusEvent;
+use TusPhp\Events\UploadComplete;
 use TusPhp\Tus\Server;
 
 class TusController extends Controller
@@ -20,8 +20,8 @@ class TusController extends Controller
         $server = app(Server::class);
 
         $server->event()->addListener(
-            TusEvent::UPLOAD_COMPLETE,
-            function (TusEvent $event) use ($request) {
+            'tus-server.upload.complete',
+            function (UploadComplete $event) use ($request) {
                 $this->onUploadComplete($event, $request);
             }
         );
@@ -29,7 +29,7 @@ class TusController extends Controller
         return $server->serve();
     }
 
-    private function onUploadComplete(TusEvent $event, Request $request): void
+    private function onUploadComplete(UploadComplete $event, Request $request): void
     {
         $file = $event->getFile();
         $originalName = $file->getName();

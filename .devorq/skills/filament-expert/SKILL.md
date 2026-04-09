@@ -1,42 +1,128 @@
-# SKILL: Filament Expert (v1.0.0)
+---
+name: filament-expert
+description: Motor de regras arquiteturais para projetos Filament PHP v3+ — anti-patterns e mandatos técnicos derivados de bugs reais
+triggers:
+  - "filament"
+  - "filament-expert"
+  - "admin panel"
+  - "filament resource"
+globs:
+  - "**/*.php"
+---
 
-## 🎯 Objetivo
-Atuar como um especialista de alto nível em Filament PHP v3+, garantindo que cada componente gerado siga as melhores práticas de UX, segurança e resiliência técnica validadas na documentação oficial.
+# Skill: filament-expert
+
+> **Esta skill complementa o agente `filament/`**. O agente define o *modo de operação*. Esta skill define o *que é proibido e o que é obrigatório*.
+
+## Quando Usar
+
+**OBRIGATÓRIO** para qualquer projeto Filament v3+ quando:
+- Criando Pages customizadas com actions
+- Implementando botões de navegação/voltar
+- Construindo tabelas com layout customizado
+
+## Mandatos Técnicos (Obrigatórios)
+
+### Mandato 1 — Despacho Canônico de Ações
+
+**Proibido:**
+- `window.confirm()` em código Filament/Livewire
+- `onclick` JS direto em elementos de ação
+- Disparadores desincronizados
+
+**Obrigatório:**
+- Usar interface `HasActions` + trait `InteractsWithActions` em Pages customizadas
+- Actions declaradas via método `getActions()` ou trait
+
+**Motivo:** Estado do modal gerenciado pelo servidor (Livewire) permite validações complexas impossíveis com JS puro. O `window.confirm` é anti-padrão em aplicações Livewire modernas.
+
+**Referência:** Filament Docs > Actions > Custom Pages
 
 ---
 
-## 🧩 REGRAS TÉCNICAS MANDATÓRIAS
+### Mandato 2 — Resiliência de Navegação Cross-Contextual
 
-### 1. Sistema de Ações e Confirmação
-- **UX Segura**: NUNCA usar `window.confirm` ou `wire:confirm` nativo do JS para ações críticas.
-- **Páginas Customizadas**: Exigir a implementação da interface `HasActions` e o trait `InteractsWithActions`.
-- **Trigger Canônico**: O disparo de modais deve ser feito via `wire:click="mountAction('nome')"` ou `$wire.mountAction()`, garantindo a sincronia de estado nativa do Livewire/Filament.
+**Proibido:**
+- `$this->getPreviousUrl()` em botões de retorno customizados
+- Métodos proprietários do Filament para navegação anterior
 
-### 2. Resiliência de Navegação
-- **Retorno Seguro**: Priorizar `url()->previous()` em vez de `getPreviousUrl()`.
-- **Justificativa**: `getPreviousUrl()` do Filament depende do histórico do Resource e pode falhar em acessos diretos. `url()->previous()` é agnóstico e garante que o botão "Voltar" sempre tenha um destino funcional.
+**Obrigatório:**
+- Usar `url()->previous()` (helper Laravel nativo)
 
-### 3. Integridade de Layout de Tabelas
-- **Web vs Mobile**: Distinguir claramente entre colunas de dados e componentes de layout.
-- **Restrição**: Não usar `Split` ou `Stack` como containers raiz em tabelas destinadas à visualização horizontal (Desktop). Reservar estes componentes apenas para transformações Mobile-First (Cards).
-- **Padrão**: Manter `TextColumn`, `IconColumn`, etc., para tabelas densas para preservar o `table-layout: auto`.
+**Motivo:** `getPreviousUrl()` falha em deep links e navegações diretas. Gera `BadMethodCallException` e navegação para null em contextos específicos.
 
-### 4. Internacionalização (i18n)
-- **Localização pt-BR**: Sempre verificar a existência de `lang/pt_BR/validation.php`.
-- **Centralização via Enum**: Utilizar o contrato `HasLabel` (Filament) em Enums de Status/Tipo para que as traduções de Badges e Filtros sejam automáticas e centralizadas.
+**Referência:** Laravel Docs > URL Generation > previous()
 
 ---
 
-## 📋 PRE-FLIGHT CHECKLIST
-Antes de entregar qualquer código Filament, valide:
-1. [ ] Ações de exclusão usam Modal do Filament?
-2. [ ] Botões de retorno usam url()->previous()?
-3. [ ] A tabela quebra no desktop por causa de Split/Stack?
-4. [ ] Labels de Status estão vindo de um Enum traduzido?
+### Mandato 3 — Integridade Estrutural de Tabelas
+
+**Proibido:**
+- `Split` e `Stack` na raiz de tabelas horizontais (layout desktop)
+- Usar componentes de Layout como colunas de tabela
+
+**Obrigatório:**
+- `Split`/`Stack` apenas dentro de transformações Mobile-First (`->visibleFrom('md')` ou similar)
+- Manter `table-layout: auto` para visualização desktop
+
+**Motivo:** Componentes de Layout na raiz de tabelas corrompe `table-layout: auto` e quebra visualização desktop legível.
+
+**Referência:** Filament Docs > Tables > Layout
 
 ---
 
-## 🛡️ CRITÉRIOS DE QUALIDADE SÊNIOR
-- Código deve ser baseado estritamente em seletores e APIs oficiais.
-- Evitar customizações de CSS agressivas que quebrem a compatibilidade com updates futuros do Filament.
-- Priorizar a experiência do usuário (UX) com feedback visual imediato (Toasts, Modais, Loading States).
+## Anti-Patterns Proibidos
+
+| Pattern | Problema | Solução |
+|---------|----------|---------|
+| `window.confirm('Tem certeza?')` | Bloqueio JS síncrono, não valida no servidor | Usar Action com modal de confirmação Filament |
+| `$this->getPreviousUrl()` | Falha em deep links | `url()->previous()` |
+| `Split` na raiz de table | Quebra layout desktop | Usar só em `visibleFrom('md')` |
+| `Stack` como column | Componente de layout usado como dado | Remover da definição de columns |
+
+---
+
+## Recomendações (Não Bloqueantes)
+
+### Internacionalização via Enum
+
+**Preferido:** Tradução via Enums com `HasLabel` interface
+```php
+enum Status: string
+{
+    use HasLabel;
+    
+    case ACTIVE = 'active';
+    case INACTIVE = 'inactive';
+    
+    public function getLabel(): string
+    {
+        return match($this) {
+            self::ACTIVE => 'Ativo',
+            self::INACTIVE => 'Inativo',
+        };
+    }
+}
+```
+
+**Evitar:** Arrays de tradução dispersos em múltiplos arquivos JSON para enums.
+
+---
+
+## Checklist de Validação (/pre-flight)
+
+Antes de任何 código Filament ser commitado, verificar:
+
+- [ ] Nenhum `window.confirm()` encontrado em arquivos Filament
+- [ ] Nenhum `$this->getPreviousUrl()` encontrado
+- [ ] `Split`/`Stack` só aparecem com `visibleFrom()` ou similar
+- [ ] Pages com actions declaram `HasActions` ou `InteractsWithActions`
+- [ ] Usa `url()->previous()` para botões de voltar customizados
+
+---
+
+## Fontes de Verdade
+
+- Filament Docs: https://filamentphp.com/docs/3.x/actions
+- Laravel Docs: https://laravel.com/docs/11.x/urls#retrieving-the-previous-url
+- Filament Tables: https://filamentphp.com/docs/3.x/tables/layout
