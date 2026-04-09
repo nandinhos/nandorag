@@ -38,15 +38,15 @@ class RagRetrievalService
     public function buildContext(Collection $chunks): string
     {
         if ($chunks->isEmpty()) {
-            return 'No relevant documents found.';
+            return 'Nenhum documento relevante encontrado.';
         }
 
-        $context = "Use the following document excerpts to answer the user's question. Cite sources when possible.\n\n";
+        $context = "USE OS SEGUINTES TRECHOS DE DOCUMENTOS PARA RESPONDER À PERGUNTA. CITE AS FONTES SE POSSÍVEL.\n\n";
 
         foreach ($chunks as $i => $chunk) {
             $num = $i + 1;
-            $context .= "--- Source {$num}: {$chunk->source_file} ({$chunk->source_location}) ---\n";
-            $context .= "{$chunk->content}\n\n";
+            $context .= "### FONTE #{$num} | ARQUIVO: {$chunk->source_file} | LOCAL: {$chunk->source_location} ###\n";
+            $context .= "CONTEÚDO: {$chunk->content}\n\n";
         }
 
         return $context;
