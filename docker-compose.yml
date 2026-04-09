@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "9090:80"
+    env_file:
+      - .env.docker
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+      - ./docker/nginx.conf:/etc/nginx/sites-available/default
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c", "mkdir -p /var/run/php && php-fpm & nginx -g 'daemon off;'"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  db:
+    image: pgvector/pgvector:pg15
+    environment:
+      - POSTGRES_DB=nandorag
+      - POSTGRES_USER=laravel
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U laravel -d nandorag"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+
+  horizon:
+    build: .
+    command: php artisan horizon
+    env_file:
+      - .env.docker
+    volumes:
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+    depends_on:
+      - app
+      - redis
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  db_data:
