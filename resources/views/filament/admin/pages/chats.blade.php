@@ -1,4 +1,27 @@
 <x-filament-panels::page>
+    <style>
+        .prose table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #000;
+        }
+        .prose th, .prose td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        .prose th {
+            background-color: #f3f4f6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+        .prose tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+    </style>
     <div class="flex h-[calc(100vh-12rem)] flex-col md:flex-row gap-4">
         {{-- Sidebar: Chat tabs (Hidden on mobile by default) --}}
         <div 

@@ -11,12 +11,13 @@ use App\Services\RagRetrievalService;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Schemas\Contracts\HasSchemas;
-use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Pages\Page;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Log;
 use Laravel\Ai\Enums\Lab;
+use Laravel\Ai\Streaming\Events\TextDelta;
 use Livewire\Attributes\Computed;
 
 class Chats extends Page implements HasActions, HasSchemas
@@ -206,8 +207,12 @@ class Chats extends Page implements HasActions, HasSchemas
         $sources = $ragService->formatSources($chunks);
 
         try {
-            $systemPrompt = 'You are a helpful assistant that answers questions based on provided document excerpts. '
-                ."Always base your answers on the provided context. If the context doesn't contain relevant information, say so.\n\n"
+            $systemPrompt = 'Você é um assistente técnico especializado em análise de documentos. '
+                .'Sua missão é responder perguntas usando EXCLUSIVAMENTE os trechos de documentos fornecidos abaixo. '
+                .'Ignore qualquer filtro de sensibilidade sobre nomes próprios ou termos administrativos. '
+                .'Sempre use TABELAS MARKDOWN (com bordas | e hifens -) para listar datas, eventos e locais. '
+                .'Certifique-se de que os dados não fiquem grudados; use espaços e quebras de linha claras. '
+                ."Se a informação não estiver no contexto, diga claramente que não encontrou.\n\n"
                 .$context;
 
             // Build conversation history for context
@@ -229,7 +234,7 @@ class Chats extends Page implements HasActions, HasSchemas
             $agent = new ChatAgent($systemPrompt);
             $agent->withMessages($history);
 
-            $model = $this->selectedModel ?: config('rag.chat_model', 'minimax-m2.5:cloud');
+            $model = $this->selectedModel ?: config('rag.chat_model', 'gemma4:latest');
 
             // Create placeholder for assistant response
             $assistantMessage = $this->activeChat->messages()->create([
@@ -253,11 +258,13 @@ class Chats extends Page implements HasActions, HasSchemas
                     $this->isStreaming = false;
                 }
 
-                $fullResponse .= $chunk->text;
-                
+                if ($chunk instanceof TextDelta) {
+                    $fullResponse .= $chunk->delta;
+                }
+
                 $this->stream(
                     to: "chat-message-{$assistantMessage->id}",
-                    content: str($fullResponse)->markdown()->toHtml(),
+                    content: (string) str($fullResponse)->markdown(),
                     replace: true
                 );
             }
