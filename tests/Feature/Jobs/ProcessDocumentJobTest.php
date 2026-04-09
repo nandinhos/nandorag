@@ -50,7 +50,7 @@ test('sets document to failed and saves error_log on exception', function () {
     expect(fn () => (new ProcessDocumentJob($document->id))->handle(
         app(DocumentImportService::class),
         app(ChunkingService::class),
-    ))->toThrow(Throwable::class);
+    ))->toThrow(Exception::class);
 
     $document->refresh();
 

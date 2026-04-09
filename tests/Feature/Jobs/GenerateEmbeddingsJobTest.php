@@ -47,7 +47,7 @@ test('sets document to failed and saves error_log when embedding fails', functio
 
     expect(fn () => (new GenerateEmbeddingsJob($document->id))->handle(
         app(EmbeddingService::class),
-    ))->toThrow(Throwable::class);
+    ))->toThrow(Exception::class);
 
     $document->refresh();
 
