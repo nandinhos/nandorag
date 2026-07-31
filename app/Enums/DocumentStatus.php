@@ -6,8 +6,9 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
-enum DocumentStatus: string implements HasLabel, HasColor, HasIcon
+enum DocumentStatus: string implements HasColor, HasIcon, HasLabel
 {
     case Pending = 'pending';
     case Processing = 'processing';
@@ -17,10 +18,10 @@ enum DocumentStatus: string implements HasLabel, HasColor, HasIcon
     public function getLabel(): string
     {
         return match ($this) {
-            self::Pending => 'Pending',
-            self::Processing => 'Processing',
-            self::Completed => 'Completed',
-            self::Failed => 'Failed',
+            self::Pending => 'Pendente',
+            self::Processing => 'Processando',
+            self::Completed => 'Concluído',
+            self::Failed => 'Falhou',
         };
     }
 
@@ -34,7 +35,7 @@ enum DocumentStatus: string implements HasLabel, HasColor, HasIcon
         };
     }
 
-    public function getIcon(): string|\BackedEnum|\Illuminate\Contracts\Support\Htmlable|null
+    public function getIcon(): string|\BackedEnum|Htmlable|null
     {
         return match ($this) {
             self::Pending => Heroicon::OutlinedClock,

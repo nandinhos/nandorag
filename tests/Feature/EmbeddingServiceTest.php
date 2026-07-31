@@ -13,13 +13,13 @@ test('processes a document and creates chunks with embeddings', function () {
     if (! is_dir($storagePath)) {
         mkdir($storagePath, 0755, true);
     }
-    file_put_contents("{$storagePath}/test.txt", str_repeat("This is test content for chunking. ", 50));
+    file_put_contents("{$storagePath}/test.txt", str_repeat('This is test content for chunking. ', 50));
 
     $document = Document::create([
         'filename' => 'test.txt',
         'original_filename' => 'test.txt',
         'mime_type' => 'text/plain',
-        'file_path' => 'test.txt',
+        'file_path' => 'documents/test.txt',
         'tags' => ['test'],
     ]);
 
@@ -40,19 +40,19 @@ test('processes a document and creates chunks with embeddings', function () {
 });
 
 test('sets document status to failed on error', function () {
-    Embeddings::fake(fn () => throw new \RuntimeException('Ollama connection failed'));
+    Embeddings::fake(fn () => throw new RuntimeException('Ollama connection failed'));
 
     $storagePath = storage_path('app/documents');
     if (! is_dir($storagePath)) {
         mkdir($storagePath, 0755, true);
     }
-    file_put_contents("{$storagePath}/fail-test.txt", "Some content here.");
+    file_put_contents("{$storagePath}/fail-test.txt", 'Some content here.');
 
     $document = Document::create([
         'filename' => 'fail-test.txt',
         'original_filename' => 'fail-test.txt',
         'mime_type' => 'text/plain',
-        'file_path' => 'fail-test.txt',
+        'file_path' => 'documents/fail-test.txt',
         'tags' => [],
     ]);
 
@@ -60,7 +60,7 @@ test('sets document status to failed on error', function () {
 
     try {
         $service->processDocument($document);
-    } catch (\RuntimeException) {
+    } catch (RuntimeException) {
         // Expected
     }
 

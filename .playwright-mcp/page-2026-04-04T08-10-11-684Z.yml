@@ -1,0 +1,17 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - heading "NandoRAG" [level=1] [ref=e8]
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Email
+        - textbox [active] [ref=e12]: nando@example.com
+      - generic [ref=e13]:
+        - generic [ref=e14]: Password
+        - textbox [ref=e15]: password
+      - generic [ref=e16]:
+        - checkbox "Remember me" [ref=e17]
+        - generic [ref=e18]: Remember me
+      - button "Sign In" [ref=e19]
+  - paragraph [ref=e21]: © 2026 NandoRAG

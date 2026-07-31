@@ -10,7 +10,7 @@ beforeEach(function () {
 });
 
 test('chunks text into fixed-size segments', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $text = implode(' ', array_map(fn ($i) => "word{$i}", range(1, 200)));
     $pages = [['page' => null, 'text' => $text, 'start_line' => 1, 'end_line' => 1]];
@@ -24,7 +24,7 @@ test('chunks text into fixed-size segments', function () {
 });
 
 test('chunks have overlap between consecutive chunks', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $text = implode(' ', array_map(fn ($i) => "word{$i}", range(1, 300)));
     $pages = [['page' => null, 'text' => $text, 'start_line' => 1, 'end_line' => 1]];
@@ -41,7 +41,7 @@ test('chunks have overlap between consecutive chunks', function () {
 });
 
 test('handles empty text', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $chunks = $service->chunk('', 'empty.txt', []);
 
@@ -49,7 +49,7 @@ test('handles empty text', function () {
 });
 
 test('handles text smaller than chunk size', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $text = 'This is a short text.';
     $pages = [['page' => null, 'text' => $text, 'start_line' => 1, 'end_line' => 1]];
@@ -61,11 +61,11 @@ test('handles text smaller than chunk size', function () {
 });
 
 test('resolves page range for PDF source location', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $page1 = "Page one content with several words to fill up space.\n";
     $page2 = "Page two content with different words for testing.\n";
-    $text = $page1 . $page2;
+    $text = $page1.$page2;
 
     $pages = [
         ['page' => 1, 'text' => trim($page1), 'start_line' => 1, 'end_line' => 1],
@@ -78,7 +78,7 @@ test('resolves page range for PDF source location', function () {
 });
 
 test('resolves line range for text source location', function () {
-    $service = new ChunkingService();
+    $service = new ChunkingService;
 
     $text = "Line one\nLine two\nLine three\nLine four\nLine five";
     $pages = [['page' => null, 'text' => $text, 'start_line' => 1, 'end_line' => 5]];

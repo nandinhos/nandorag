@@ -1,0 +1,115 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Help" [level=1] [ref=e49]
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - heading "Connection Status" [level=2] [ref=e54]
+              - button "Check Status" [ref=e55] [cursor=pointer]
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]: Ollama Server
+                - paragraph [ref=e59]: Connected
+              - generic [ref=e60]:
+                - generic [ref=e61]: Embedding Model
+                - paragraph [ref=e62]: "nomic-embed-text: Available"
+              - generic [ref=e63]:
+                - generic [ref=e64]: Chat Model
+                - paragraph [ref=e65]: "llama3.2:3b: Available"
+            - generic [ref=e66]: "Available models: nomic-embed-text:latest, llama3.2:3b, minimax-m2.5:cloud, qwen3:8b, deepseek-r1:8b, qwen3-coder:30b"
+          - generic [ref=e67]:
+            - heading "Setup Guide" [level=2] [ref=e68]
+            - generic [ref=e69]:
+              - heading "1. Install Ollama" [level=3] [ref=e70]
+              - paragraph [ref=e71]:
+                - text: Download and install Ollama from
+                - link "ollama.com" [ref=e72] [cursor=pointer]:
+                  - /url: https://ollama.com
+                - text: .
+              - code [ref=e74]: "# Linux curl -fsSL https://ollama.com/install.sh | sh # Start the server ollama serve"
+              - heading "2. Pull Required Models" [level=3] [ref=e75]
+              - paragraph [ref=e76]: "You need two models: one for generating embeddings and one for chat conversations."
+              - code [ref=e78]: "# Embedding model (768 dimensions, ~275MB) ollama pull nomic-embed-text # Chat model (3B parameters, ~2GB) ollama pull llama3.2:3b"
+              - heading "3. Environment Configuration" [level=3] [ref=e79]
+              - paragraph [ref=e80]:
+                - text: Add or update these variables in your
+                - code [ref=e81]: .env
+                - text: "file:"
+              - code [ref=e83]: "# Ollama server URL (default: http://localhost:11434) OLLAMA_BASE_URL=http://localhost:11434 # RAG settings (optional, these are the defaults) RAG_CHUNK_SIZE=512 RAG_CHUNK_OVERLAP=50 RAG_SIMILARITY_THRESHOLD=0.5 RAG_TOP_K=10"
+              - heading "4. Laravel/AI Configuration" [level=3] [ref=e84]
+              - paragraph [ref=e85]:
+                - text: The
+                - code [ref=e86]: config/ai.php
+                - text: "file is already configured to use Ollama as the default provider for both text and embeddings. Key settings:"
+              - code [ref=e88]: // config/ai.php 'default' => 'ollama', 'default_for_embeddings' => 'ollama', 'providers' => [ 'ollama' => [ 'driver' => 'ollama', 'url' => env('OLLAMA_BASE_URL', 'http://localhost:11434'), ], ],
+              - heading "5. Troubleshooting" [level=3] [ref=e89]
+              - table [ref=e90]:
+                - rowgroup [ref=e91]:
+                  - row "Issue Solution" [ref=e92]:
+                    - columnheader "Issue" [ref=e93]
+                    - columnheader "Solution" [ref=e94]
+                - rowgroup [ref=e95]:
+                  - 'row "Connection refused Ensure Ollama is running: ollama serve" [ref=e96]':
+                    - cell "Connection refused" [ref=e97]
+                    - 'cell "Ensure Ollama is running: ollama serve" [ref=e98]':
+                      - text: "Ensure Ollama is running:"
+                      - code [ref=e99]: ollama serve
+                  - 'row "Model not found Pull the model: ollama pull model-name" [ref=e100]':
+                    - cell "Model not found" [ref=e101]
+                    - 'cell "Pull the model: ollama pull model-name" [ref=e102]':
+                      - text: "Pull the model:"
+                      - code [ref=e103]: ollama pull model-name
+                  - row "Slow responses llama3.2:3b needs ~2-3GB RAM. Check available memory." [ref=e104]:
+                    - cell "Slow responses" [ref=e105]
+                    - cell "llama3.2:3b needs ~2-3GB RAM. Check available memory." [ref=e106]
+                  - row "Embedding errors nomic-embed-text needs ~300MB RAM. Verify with ollama list." [ref=e107]:
+                    - cell "Embedding errors" [ref=e108]
+                    - cell "nomic-embed-text needs ~300MB RAM. Verify with ollama list." [ref=e109]:
+                      - text: nomic-embed-text needs ~300MB RAM. Verify with
+                      - code [ref=e110]: ollama list
+                      - text: .
+                  - row "Wrong OLLAMA_BASE_URL Default is http://localhost:11434. If Ollama runs on a different host/port, update .env." [ref=e111]:
+                    - cell "Wrong OLLAMA_BASE_URL" [ref=e112]
+                    - cell "Default is http://localhost:11434. If Ollama runs on a different host/port, update .env." [ref=e113]:
+                      - text: Default is
+                      - code [ref=e114]: http://localhost:11434
+                      - text: . If Ollama runs on a different host/port, update
+                      - code [ref=e115]: .env
+                      - text: .
+  - generic:
+    - status

@@ -23,3 +23,12 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+.serena/
+.devorq/logs/
+.devorq/state/
+*.png
+*.jpg
+*.jpeg
+!docs/*.png
+!docs/*.jpg
+!docs/*.jpeg

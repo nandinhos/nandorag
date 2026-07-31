@@ -3,18 +3,22 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Admin\Pages\CustomDashboard;
-use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Assets\Js;
+use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -25,36 +29,35 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->login()
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->assets([
+                \Filament\Support\Assets\Js::make('app-scripts', Vite::asset('resources/js/app.js'))->module(),
+            ])
             ->authGuard('web')
-            ->font('Oswald', provider: GoogleFontProvider::class)
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_START,
+                fn (): HtmlString => new HtmlString(
+                    '<div class="neo-topbar-brand">'
+                    .'<span class="neo-topbar-badge">NandoRAG</span>'
+                    .'<span class="neo-topbar-version">v1.0 &mdash; '.now()->format('d/m/Y H:i').'</span>'
+                    .'</div>'
+                ),
+            )
             ->colors([
-                'primary' => [
-                    50 => '#ecfeff',
-                    100 => '#cffafe',
-                    200 => '#a5f3fc',
-                    300 => '#67e8f9',
-                    400 => '#22d3ee',
-                    500 => '#06b6d4',
-                    600 => '#0891b2',
-                    700 => '#0e7490',
-                    800 => '#155e75',
-                    900 => '#164e63',
-                    950 => '#083344',
-                ],
-                'warning' => [
-                    50 => '#fefce8',
-                    100 => '#fef9c3',
-                    200 => '#fef08a',
-                    300 => '#fde047',
-                    400 => '#facc15',
-                    500 => '#eab308',
-                    600 => '#ca8a04',
-                    700 => '#a16207',
-                    800 => '#854d0e',
-                    900 => '#713f12',
-                    950 => '#422006',
-                ],
+                // Neo-brutalist: primary = teal (#22D3EE), mapped to cyan scale
+                'primary' => Color::Cyan,
+                // danger = magenta/fuchsia
+                'danger' => Color::Fuchsia,
+                // warning = yellow
+                'warning' => Color::Yellow,
+                // success = neo-green → emerald closest
+                'success' => Color::Emerald,
+                // info = teal
+                'info' => Color::Cyan,
+                // gray = stone (warm, fits cream bg)
+                'gray' => Color::Stone,
+                'purple' => Color::Purple,
             ])
             ->discoverResources(
                 in: app_path('Filament/Admin/Resources'),

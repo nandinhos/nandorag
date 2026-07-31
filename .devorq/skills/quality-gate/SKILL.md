@@ -8,6 +8,7 @@ triggers:
 globs:
   - "**/*.php"
   - "**/*.js"
+  - "**/*.sh"
 ---
 
 # /quality-gate - Verificação Pré-Commit
@@ -51,6 +52,9 @@ globs:
 ### 7. Arquitetura
 - [ ] Lógica em Actions/Services
 - [ ] Form Requests para validação
+
+### 8. Bash (Dual-use Scripts)
+- [ ] Scripts Bash que funcionam como biblioteca e executável contêm o guard `[[ "${BASH_SOURCE[0]}" != "$0" ]] && return 0` antes da lógica de execução.
 ```
 
 ## Resultado

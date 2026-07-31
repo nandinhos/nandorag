@@ -1,0 +1,121 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e7]
+        - generic [ref=e9]: NandoRAG
+      - generic [ref=e10]:
+        - link "Recursos" [ref=e11] [cursor=pointer]:
+          - /url: "#features"
+        - link "Como Funciona" [ref=e12] [cursor=pointer]:
+          - /url: "#how-it-works"
+        - link "Preços" [ref=e13] [cursor=pointer]:
+          - /url: "#pricing"
+        - link "Entrar" [ref=e14] [cursor=pointer]:
+          - /url: http://localhost:8000/admin
+  - generic [ref=e20]:
+    - generic [ref=e23]: Powered by Ollama
+    - heading "Seu Conhecimento, Potencializado por IA" [level=1] [ref=e24]:
+      - text: Seu Conhecimento,
+      - text: Potencializado por IA
+    - paragraph [ref=e25]: Transforme documentos em conhecimento conversacional. NandoRAG é seu assistente de IA para consultas em bases de conhecimento pessoais. PDFs, textos e documentos become fontes de sabedoria.
+    - generic [ref=e26]:
+      - link "Começar Agora" [ref=e27] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - text: Começar Agora
+        - img [ref=e28]
+      - link "Ver Demo" [ref=e30] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]: 100%
+        - generic [ref=e34]: Local
+      - generic [ref=e35]:
+        - generic [ref=e36]: 0€
+        - generic [ref=e37]: Custo API
+      - generic [ref=e38]:
+        - generic [ref=e39]: ∞
+        - generic [ref=e40]: Privacidade
+      - generic [ref=e41]:
+        - generic [ref=e42]: ∞
+        - generic [ref=e43]: Documentos
+  - generic [ref=e45]:
+    - generic [ref=e46]:
+      - heading "Recursos Premium" [level=2] [ref=e47]
+      - paragraph [ref=e48]: Tudo que você precisa para gerenciar seu conhecimento com IA
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - img [ref=e52]
+        - heading "Processamento de PDF" [level=3] [ref=e54]
+        - paragraph [ref=e55]: Upload e processamento de documentos PDF com extração inteligente de texto e chunking otimizado.
+      - generic [ref=e56]:
+        - img [ref=e58]
+        - heading "Embeddings Locais" [level=3] [ref=e60]
+        - paragraph [ref=e61]: Geração de embeddings usando Ollama com nomic-embed-text. Totalmente local e privado.
+      - generic [ref=e62]:
+        - img [ref=e64]
+        - heading "Chat Inteligente" [level=3] [ref=e66]
+        - paragraph [ref=e67]: Converse com seus documentos usando LLMs locais como Llama 3.2 ou Qwen3.
+      - generic [ref=e68]:
+        - img [ref=e70]
+        - heading "Armazenamento Vetorial" [level=3] [ref=e72]
+        - paragraph [ref=e73]: PostgreSQL com pgvector para busca semântica rápida e precisa.
+      - generic [ref=e74]:
+        - img [ref=e76]
+        - heading "Privacidade Total" [level=3] [ref=e78]
+        - paragraph [ref=e79]: Seus dados nunca saem do seu servidor. 100% offline e privado.
+      - generic [ref=e80]:
+        - img [ref=e82]
+        - heading "Admin Panel" [level=3] [ref=e84]
+        - paragraph [ref=e85]: Filament 5 com design customizado para gerenciamento completo.
+  - generic [ref=e87]:
+    - generic [ref=e88]:
+      - heading "Como Funciona" [level=2] [ref=e89]
+      - paragraph [ref=e90]: Pipeline completo de Retrieval-Augmented Generation
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - generic [ref=e93]: "1"
+        - heading "Upload" [level=3] [ref=e94]
+        - paragraph [ref=e95]: Envie seus PDFs e documentos
+      - img [ref=e97]
+      - generic [ref=e99]:
+        - generic [ref=e100]: "2"
+        - heading "Chunking" [level=3] [ref=e101]
+        - paragraph [ref=e102]: Texto extraído e dividido
+      - img [ref=e104]
+      - generic [ref=e106]:
+        - generic [ref=e107]: "3"
+        - heading "Embedding" [level=3] [ref=e108]
+        - paragraph [ref=e109]: Vetores gerados localmente
+      - img [ref=e111]
+      - generic [ref=e113]:
+        - generic [ref=e114]: "4"
+        - heading "Chat com IA" [level=3] [ref=e115]
+        - paragraph [ref=e116]: Pergunte e receba respostas com fontes
+  - generic [ref=e118]:
+    - heading "Stack Tecnológica" [level=2] [ref=e120]
+    - generic [ref=e121]:
+      - generic [ref=e123]: Laravel 13
+      - generic [ref=e125]: Filament 5
+      - generic [ref=e127]: Livewire 4
+      - generic [ref=e129]: PostgreSQL
+      - generic [ref=e131]: Ollama
+      - generic [ref=e133]: Tailwind
+  - generic [ref=e135]:
+    - heading "Pronto para Transformar seu Conhecimento?" [level=2] [ref=e136]
+    - paragraph [ref=e137]: Comece a usar NandoRAG hoje mesmo. Totalmente gratuito e de código aberto.
+    - link "Acessar Painel Admin" [ref=e138] [cursor=pointer]:
+      - /url: http://localhost:8000/admin
+      - text: Acessar Painel Admin
+      - img [ref=e139]
+  - contentinfo [ref=e141]:
+    - generic [ref=e143]:
+      - generic [ref=e144]:
+        - img [ref=e146]
+        - generic [ref=e148]: NandoRAG
+      - generic [ref=e149]: © 2026 NandoRAG. Open Source.
+      - generic [ref=e150]:
+        - link "GitHub" [ref=e151] [cursor=pointer]:
+          - /url: https://github.com/nandinhos/nandorag
+        - link "Documentação" [ref=e152] [cursor=pointer]:
+          - /url: "#"

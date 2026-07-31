@@ -1,0 +1,63 @@
+- generic [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Chats" [level=1] [ref=e49]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - button "New Chat" [ref=e54] [cursor=pointer]:
+              - img [ref=e55]
+              - text: New Chat
+            - generic [ref=e58]:
+              - button "Teste" [ref=e59] [cursor=pointer]
+              - generic [ref=e60]:
+                - button
+                - button
+          - generic [ref=e63]:
+            - generic [ref=e65]:
+              - heading "Teste" [level=3] [ref=e66]
+              - paragraph [ref=e67]: All documents
+            - generic [ref=e68]:
+              - paragraph [ref=e72]: sobre que assunto estasmo tratando?
+              - generic [ref=e74]:
+                - paragraph [ref=e76]: Até o momento, não há nenhum contexto fornecido sobre o assunto em questão. Você poderia me fornecer um trecho do documento ou uma breve descrição do tópico que gostaria de discutir? Isso me permitirá responder mais precisamente à sua pergunta.
+                - group [ref=e77]:
+                  - generic "10 source(s)" [ref=e78]
+            - generic [ref=e80]:
+              - textbox "Type your message..." [active] [ref=e81]: O que é gestão patrimonial no COMAER?
+              - button "Send" [disabled] [ref=e82]
+  - generic:
+    - status

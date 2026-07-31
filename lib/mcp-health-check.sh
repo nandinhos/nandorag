@@ -5,6 +5,7 @@
 # ============================================================================
 # Health check completo que verifica se MCPs estão respondendo
 # Não apenas se o comando existe, mas se realmente funcionam
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then echo "ERRO: Este módulo deve ser carregado via 'source', não executado." >&2; exit 1; fi
 # ============================================================================
 
 _MCP_HEALTH_TIMEOUT=5
@@ -186,8 +187,15 @@ mcp_health_all() {
     
     # Detecta stack primeiro (para saber se Laravel é aplicável)
     local current_stack="generic"
-    if [ -f ".devorq/lib/stack-detector.sh" ]; then
-        source ".devorq/lib/stack-detector.sh"
+    local _stack_detector
+    _stack_detector="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../lib/stack-detector.sh"
+    # Fallback para DEVORQ_ROOT se disponível
+    if [ -f "${DEVORQ_ROOT:-}/lib/stack-detector.sh" ]; then
+        _stack_detector="${DEVORQ_ROOT}/lib/stack-detector.sh"
+    fi
+    if [ -f "$_stack_detector" ]; then
+        # shellcheck source=/dev/null
+        source "$_stack_detector"
         current_stack=$(stack_detect "." 2>/dev/null || echo "generic")
     fi
     
@@ -238,7 +246,7 @@ mcp_health_suggest() {
     if [ -z "$CONTEXT7_API_KEY" ]; then
         echo "  context7:"
         echo "    1. Obtenha chave em: https://upstash.com/"
-        echo "    2. Execute: aidev mcp keys"
+        echo "    2. Execute: devorq mcp keys"
         echo "    3. Adicione ao ~/.bashrc: export CONTEXT7_API_KEY=\"sua-chave\""
         echo ""
     fi

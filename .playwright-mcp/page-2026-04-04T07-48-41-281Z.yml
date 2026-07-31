@@ -1,0 +1,139 @@
+- generic [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Chats" [level=1] [ref=e49]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - button "New Chat" [ref=e54] [cursor=pointer]:
+              - img [ref=e55]
+              - text: New Chat
+            - generic [ref=e57]:
+              - button "Lideranca" [ref=e59] [cursor=pointer]
+              - button "hope" [ref=e61] [cursor=pointer]
+              - button "Teste" [ref=e63] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - generic [ref=e66]:
+                - heading "Lideranca" [level=3] [ref=e67]
+                - paragraph [ref=e68]: "Scoped to: LIDERANÇA E EQUIPES.pdf"
+              - generic [ref=e69]:
+                - generic [ref=e70]: "Model:"
+                - combobox [ref=e71]:
+                  - option "nomic-embed-text:latest (261.6 MB)"
+                  - option "llama3.2:3b (1.9 GB)" [selected]
+                  - option "minimax-m2.5:cloud (337 B)"
+                  - option "qwen3:8b (4.9 GB)"
+                  - option "deepseek-r1:8b (4.9 GB)"
+                  - option "qwen3-coder:30b (17.3 GB)"
+            - generic [ref=e72]:
+              - paragraph [ref=e76]: quero um resumo sobre o tema
+              - paragraph [ref=e80]: Sorry, I encountered an error generating a response. Please check that Ollama is running.
+              - paragraph [ref=e84]: tipos de lideranca
+              - paragraph [ref=e88]: Sorry, I encountered an error generating a response. Please check that Ollama is running.
+              - paragraph [ref=e92]: tipos de lideranca
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - 'heading "Resumo: Tipos de Liderança" [level=1] [ref=e96]'
+                  - paragraph [ref=e97]: "Com base nos documentos fornecidos, apresento um resumo sobre os principais tipos/abordagens de liderança:"
+                  - separator [ref=e98]
+                  - heading "1. Liderança Transacional" [level=2] [ref=e99]
+                  - list [ref=e100]:
+                    - listitem [ref=e101]: Foca na troca entre líder e liderado (recompensar subordinates por cumprimento de tarefas)
+                    - listitem [ref=e102]: O líder alcança seus objetivos com mais facilidade
+                    - listitem [ref=e103]:
+                      - text: Porém, os liderados passam a agir
+                      - strong [ref=e104]: somente
+                      - text: para criar seu bem-estar individual, em detrimento do grupo ou organização
+                  - separator [ref=e105]
+                  - heading "2. Liderança Transformacional" [level=2] [ref=e106]
+                  - list [ref=e107]:
+                    - listitem [ref=e108]: Produz resultados mais promissores que a liderança transacional
+                    - listitem [ref=e109]: O líder fica atento às necessidades do subordinado e o ajuda a alcançar seu potencial
+                    - listitem [ref=e110]: Líderes e liderados evoluem juntos para níveis superiores de motivação e moralidade
+                    - listitem [ref=e111]:
+                      - text: Gera performances
+                      - strong [ref=e112]: muito superiores
+                      - text: à transacional
+                  - separator [ref=e113]
+                  - heading "3. Modelo de Liderados de Kelley (1992)" [level=2] [ref=e114]
+                  - paragraph [ref=e115]:
+                    - text: Este modelo classifica os
+                    - strong [ref=e116]: liderados
+                    - text: "em 5 tipos, segundo duas dimensões:"
+                  - table [ref=e117]:
+                    - rowgroup [ref=e118]:
+                      - row "Tipo Características" [ref=e119]:
+                        - columnheader "Tipo" [ref=e120]
+                        - columnheader "Características" [ref=e121]
+                    - rowgroup [ref=e122]:
+                      - row "Alienado Baixa iniciativa, alto pensamento crítico" [ref=e123]:
+                        - cell "Alienado" [ref=e124]:
+                          - strong [ref=e125]: Alienado
+                        - cell "Baixa iniciativa, alto pensamento crítico" [ref=e126]
+                      - row "Conformista Alta iniciativa, baixo pensamento crítico" [ref=e127]:
+                        - cell "Conformista" [ref=e128]:
+                          - strong [ref=e129]: Conformista
+                        - cell "Alta iniciativa, baixo pensamento crítico" [ref=e130]
+                      - row "Passivo Baixa iniciativa, baixo pensamento crítico" [ref=e131]:
+                        - cell "Passivo" [ref=e132]:
+                          - strong [ref=e133]: Passivo
+                        - cell "Baixa iniciativa, baixo pensamento crítico" [ref=e134]
+                      - row "Pragmático Média/Moderada em ambas dimensões" [ref=e135]:
+                        - cell "Pragmático" [ref=e136]:
+                          - strong [ref=e137]: Pragmático
+                        - cell "Média/Moderada em ambas dimensões" [ref=e138]
+                      - row "Exemplar Alta iniciativa, alto pensamento crítico" [ref=e139]:
+                        - cell "Exemplar" [ref=e140]:
+                          - strong [ref=e141]: Exemplar
+                        - cell "Alta iniciativa, alto pensamento crítico" [ref=e142]
+                  - separator [ref=e143]
+                  - heading "Conclusão" [level=2] [ref=e144]
+                  - paragraph [ref=e145]:
+                    - strong [ref=e146]: Não existe um estilo ideal de liderança para todas as situações.
+                    - text: As teorias comportamentais não atingiram o objetivo de determinar um comportamento universal. O líder deve adaptar seu estilo conforme o perfil e comportamento dos liderados.
+                  - separator [ref=e147]
+                  - paragraph [ref=e148]:
+                    - emphasis [ref=e149]: "Fontes: LIDERANÇA E EQUIPES.pdf (p.19-25)"
+                - group [ref=e150]:
+                  - generic "3 source(s)" [ref=e151] [cursor=pointer]
+              - paragraph [ref=e155]: conceitos
+              - paragraph [ref=e159]: Sorry, I encountered an error generating a response. Please check that Ollama is running.
+            - generic [ref=e161]:
+              - textbox "Type your message..." [active] [ref=e162]
+              - button "Send" [ref=e163] [cursor=pointer]
+  - generic:
+    - status

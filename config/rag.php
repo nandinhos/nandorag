@@ -14,6 +14,6 @@ return [
 
     'embedding_dimensions' => (int) env('RAG_EMBEDDING_DIMENSIONS', 768),
 
-    'chat_model' => env('RAG_CHAT_MODEL', 'llama3.2:3b'),
+    'chat_model' => env('RAG_CHAT_MODEL', 'minimax-m2.5:cloud'),
 
 ];

@@ -1,0 +1,357 @@
+- generic [active] [ref=e1]:
+  - dialog [ref=e159]:
+    - iframe [ref=e160]:
+      - generic [ref=f3e2]:
+        - generic [ref=f3e4]:
+          - generic [ref=f3e5]:
+            - img [ref=f3e7]
+            - generic [ref=f3e10]: Internal Server Error
+          - button "Copy as Markdown" [ref=f3e11] [cursor=pointer]:
+            - img [ref=f3e12]
+            - generic [ref=f3e15]: Copy as Markdown
+        - generic [ref=f3e18]:
+          - generic [ref=f3e19]:
+            - heading "Spatie\\PdfToText\\Exceptions\\PdfNotFound" [level=1] [ref=f3e20]
+            - generic [ref=f3e22]: vendor/spatie/pdf-to-text/src/Pdf.php:51
+            - paragraph [ref=f3e23]: "Could not read `/home/nandodev/projects/nandorag/storage/app/documents/documents/01KNBJVVJ9K04X78F4909QKSHH.pdf`"
+          - generic [ref=f3e24]:
+            - generic [ref=f3e25]:
+              - generic [ref=f3e26]:
+                - generic [ref=f3e27]: LARAVEL
+                - generic [ref=f3e28]: 13.3.0
+              - generic [ref=f3e29]:
+                - generic [ref=f3e30]: PHP
+                - generic [ref=f3e31]: 8.4.1
+            - generic [ref=f3e32]:
+              - img [ref=f3e33]
+              - text: UNHANDLED
+            - generic [ref=f3e36]: CODE 0
+          - generic [ref=f3e38]:
+            - generic [ref=f3e39]:
+              - img [ref=f3e40]
+              - text: "500"
+            - generic [ref=f3e43]:
+              - img [ref=f3e44]
+              - text: POST
+            - generic [ref=f3e47]: http://localhost:8000/livewire-1f25726a/update
+            - button [ref=f3e48] [cursor=pointer]:
+              - img [ref=f3e49]
+        - generic [ref=f3e53]:
+          - generic [ref=f3e54]:
+            - generic [ref=f3e55]:
+              - img [ref=f3e57]
+              - heading "Exception trace" [level=3] [ref=f3e60]
+            - generic [ref=f3e61]:
+              - generic [ref=f3e63] [cursor=pointer]:
+                - img [ref=f3e64]
+                - generic [ref=f3e68]: 2 vendor frames
+                - button [ref=f3e69]:
+                  - img [ref=f3e70]
+              - generic [ref=f3e74]:
+                - generic [ref=f3e75] [cursor=pointer]:
+                  - generic [ref=f3e78]:
+                    - code [ref=f3e82]:
+                      - generic [ref=f3e83]: Spatie\PdfToText\Pdf::getText(string)
+                    - generic [ref=f3e85]: app/Services/DocumentImportService.php:75
+                  - button [ref=f3e87]:
+                    - img [ref=f3e88]
+                - code [ref=f3e96]:
+                  - generic [ref=f3e97]: 70 ];
+                  - generic [ref=f3e98]: "71 }"
+                  - generic [ref=f3e99]: "72"
+                  - generic [ref=f3e100]: "73 private function getPdfPageCount(string $filePath): int"
+                  - generic [ref=f3e101]: "74 {"
+                  - generic [ref=f3e102]: 75 $fullText = Pdf::getText($filePath);
+                  - generic [ref=f3e103]: 76 // pdftotext inserts form feed characters between pages
+                  - generic [ref=f3e104]: 77 $pages = preg_split('/\f/', $fullText);
+                  - generic [ref=f3e105]: "78"
+                  - generic [ref=f3e106]: 79 return max(1, count(array_filter($pages, fn ($p) => trim($p) !== '')));
+                  - generic [ref=f3e107]: "80 }"
+                  - generic [ref=f3e108]: "81}"
+                  - generic [ref=f3e109]: "82"
+              - generic [ref=f3e111] [cursor=pointer]:
+                - generic [ref=f3e114]:
+                  - code [ref=f3e118]:
+                    - generic [ref=f3e119]: App\Services\DocumentImportService->getPdfPageCount(string)
+                  - generic [ref=f3e121]: app/Services/DocumentImportService.php:24
+                - button [ref=f3e123]:
+                  - img [ref=f3e124]
+              - generic [ref=f3e129] [cursor=pointer]:
+                - generic [ref=f3e132]:
+                  - code [ref=f3e136]:
+                    - generic [ref=f3e137]: App\Services\DocumentImportService->extractFromPdf(string)
+                  - generic [ref=f3e139]: app/Services/DocumentImportService.php:17
+                - button [ref=f3e141]:
+                  - img [ref=f3e142]
+              - generic [ref=f3e147] [cursor=pointer]:
+                - generic [ref=f3e150]:
+                  - code [ref=f3e154]:
+                    - generic [ref=f3e155]: App\Services\DocumentImportService->extract(string, string)
+                  - generic [ref=f3e157]: app/Services/EmbeddingService.php:23
+                - button [ref=f3e159]:
+                  - img [ref=f3e160]
+              - generic [ref=f3e165] [cursor=pointer]:
+                - generic [ref=f3e168]:
+                  - code [ref=f3e172]:
+                    - generic [ref=f3e173]: App\Services\EmbeddingService->processDocument(object(App\Models\Document))
+                  - generic [ref=f3e175]: app/Filament/Admin/Resources/Documents/Pages/CreateDocument.php:28
+                - button [ref=f3e177]:
+                  - img [ref=f3e178]
+              - generic [ref=f3e183] [cursor=pointer]:
+                - img [ref=f3e184]
+                - generic [ref=f3e188]: 60 vendor frames
+                - button [ref=f3e189]:
+                  - img [ref=f3e190]
+              - generic [ref=f3e195] [cursor=pointer]:
+                - generic [ref=f3e198]:
+                  - code [ref=f3e202]:
+                    - generic [ref=f3e203]: Illuminate\Foundation\Application->handleRequest(object(Illuminate\Http\Request))
+                  - generic [ref=f3e205]: public/index.php:20
+                - button [ref=f3e207]:
+                  - img [ref=f3e208]
+              - generic [ref=f3e213] [cursor=pointer]:
+                - img [ref=f3e214]
+                - generic [ref=f3e218]: 1 vendor frame
+                - button [ref=f3e219]:
+                  - img [ref=f3e220]
+          - generic [ref=f3e224]:
+            - generic [ref=f3e225]:
+              - generic [ref=f3e226]:
+                - img [ref=f3e228]
+                - heading "Queries" [level=3] [ref=f3e230]
+              - generic [ref=f3e232]: 1-6 of 6
+            - generic [ref=f3e233]:
+              - generic [ref=f3e234]:
+                - generic [ref=f3e235]:
+                  - generic [ref=f3e236]:
+                    - img [ref=f3e237]
+                    - generic [ref=f3e239]: pgsql
+                  - code [ref=f3e243]:
+                    - generic [ref=f3e244]: select * from "sessions" where "id" = 'b9vYsMJPiHErlrPudoM8XrBAEwtJz2HFbuKkugF5' limit 1
+                - generic [ref=f3e245]: 29.45ms
+              - generic [ref=f3e246]:
+                - generic [ref=f3e247]:
+                  - generic [ref=f3e248]:
+                    - img [ref=f3e249]
+                    - generic [ref=f3e251]: pgsql
+                  - code [ref=f3e255]:
+                    - generic [ref=f3e256]: select * from "cache" where "key" in ('nandorag-cache-livewire-checksum-failures:127.0.0.1')
+                - generic [ref=f3e257]: 3.36ms
+              - generic [ref=f3e258]:
+                - generic [ref=f3e259]:
+                  - generic [ref=f3e260]:
+                    - img [ref=f3e261]
+                    - generic [ref=f3e263]: pgsql
+                  - code [ref=f3e267]:
+                    - generic [ref=f3e268]: select * from "users" where "id" = 1 limit 1
+                - generic [ref=f3e269]: 2.72ms
+              - generic [ref=f3e270]:
+                - generic [ref=f3e271]:
+                  - generic [ref=f3e272]:
+                    - img [ref=f3e273]
+                    - generic [ref=f3e275]: pgsql
+                  - code [ref=f3e279]:
+                    - generic [ref=f3e280]: insert into "documents" ("file_path", "filename", "original_filename", "tags", "mime_type", "updated_at", "created_at") values ('documents/01KNBJVVJ9K04X78F4909QKSHH.pdf', 'GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf', 'GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf', '["GPC - GEST\u00c3O PATRIMONIAL NO COMAER 2026.pdf"]', 'application/pdf', '2026-04-04 06:28:41', '2026-04-04 06:28:41') returning "id"
+                - generic [ref=f3e281]: 7.52ms
+              - generic [ref=f3e282]:
+                - generic [ref=f3e283]:
+                  - generic [ref=f3e284]:
+                    - img [ref=f3e285]
+                    - generic [ref=f3e287]: pgsql
+                  - code [ref=f3e291]:
+                    - generic [ref=f3e292]: update "documents" set "status" = 'processing', "updated_at" = '2026-04-04 06:28:41' where "id" = 1
+                - generic [ref=f3e293]: 4.65ms
+              - generic [ref=f3e294]:
+                - generic [ref=f3e295]:
+                  - generic [ref=f3e296]:
+                    - img [ref=f3e297]
+                    - generic [ref=f3e299]: pgsql
+                  - code [ref=f3e303]:
+                    - generic [ref=f3e304]: update "documents" set "status" = 'failed', "updated_at" = '2026-04-04 06:28:41' where "id" = 1
+                - generic [ref=f3e305]: 5.55ms
+        - generic [ref=f3e307]:
+          - generic [ref=f3e308]:
+            - heading "Headers" [level=2] [ref=f3e309]
+            - generic [ref=f3e310]:
+              - generic [ref=f3e311]:
+                - generic [ref=f3e312]: host
+                - generic [ref=f3e314]: localhost:8000
+              - generic [ref=f3e315]:
+                - generic [ref=f3e316]: connection
+                - generic [ref=f3e318]: keep-alive
+              - generic [ref=f3e319]:
+                - generic [ref=f3e320]: content-length
+                - generic [ref=f3e322]: "1570"
+              - generic [ref=f3e323]:
+                - generic [ref=f3e324]: sec-ch-ua-platform
+                - generic [ref=f3e326]: "\"Linux\""
+              - generic [ref=f3e327]:
+                - generic [ref=f3e328]: user-agent
+                - generic [ref=f3e330]: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+              - generic [ref=f3e331]:
+                - generic [ref=f3e332]: sec-ch-ua
+                - generic [ref=f3e334]: "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\""
+              - generic [ref=f3e335]:
+                - generic [ref=f3e336]: content-type
+                - generic [ref=f3e338]: application/json
+              - generic [ref=f3e339]:
+                - generic [ref=f3e340]: x-livewire
+                - generic [ref=f3e342]: "1"
+              - generic [ref=f3e343]:
+                - generic [ref=f3e344]: sec-ch-ua-mobile
+                - generic [ref=f3e346]: "?0"
+              - generic [ref=f3e347]:
+                - generic [ref=f3e348]: accept
+                - generic [ref=f3e350]: "*/*"
+              - generic [ref=f3e351]:
+                - generic [ref=f3e352]: origin
+                - generic [ref=f3e354]: http://localhost:8000
+              - generic [ref=f3e355]:
+                - generic [ref=f3e356]: sec-fetch-site
+                - generic [ref=f3e358]: same-origin
+              - generic [ref=f3e359]:
+                - generic [ref=f3e360]: sec-fetch-mode
+                - generic [ref=f3e362]: cors
+              - generic [ref=f3e363]:
+                - generic [ref=f3e364]: sec-fetch-dest
+                - generic [ref=f3e366]: empty
+              - generic [ref=f3e367]:
+                - generic [ref=f3e368]: referer
+                - generic [ref=f3e370]: http://localhost:8000/admin/documents/create
+              - generic [ref=f3e371]:
+                - generic [ref=f3e372]: accept-encoding
+                - generic [ref=f3e374]: gzip, deflate, br, zstd
+              - generic [ref=f3e375]:
+                - generic [ref=f3e376]: accept-language
+                - generic [ref=f3e378]: en-US,en;q=0.9
+              - generic [ref=f3e379]:
+                - generic [ref=f3e380]: cookie
+                - generic [ref=f3e382]: XSRF-TOKEN=eyJpdiI6IlZZQXlnSEF1SzZjSExSZWRkNnZpN0E9PSIsInZhbHVlIjoiSnhWSGtNaEpRMGxwOWFRZHJaRSswUXFMM3RDVWMvYmUrbmZIU1E3QlpRNzRaUnBOUk9kaTJoQkpyclNBaGpTNGFHRENxMEJ1TXA0UXdpN3NueTVySjE0YVlZQ1VxeGlQdVQweTRmd3pxSCtRVERoemVtWUE4SUZXTW8zWW1HQjciLCJtYWMiOiJmNDI3MTAxY2Y0ODY0NTVlNzBjYTY4OTY3MWI2ZDhiZTdmODViMWYyNDM2YjA2YzVlMTc0NGFhMDk1ZjIzZjQ4IiwidGFnIjoiIn0%3D; nandorag-session=eyJpdiI6ImszZlNYNkJxZmd0b1UwZmF1QytpVUE9PSIsInZhbHVlIjoiOXo5MFVXdjZWNjJGaENGRFJSazdkWGVET2orY2x0QkVoeCtDQTZsQ1VsMk8ySk5RL0N2Rno3YzV2bDNrR3RvZHJOSGdtWlpOSDUybWM1R1M5U1QyYkJQRldmYWJCL1VXMkV2TzhMSC9GTzRjSzFtTWhOSVpsVHg3VEpTSyt4OWciLCJtYWMiOiJmY2IzMTVhMjAwZjFjY2ZlMjdhZmM4MzVhM2E2OTg3MTg0M2RiMDliMGUzYWVmN2I5Mjk1ODBiOGM4YTY4Y2NhIiwidGFnIjoiIn0%3D
+          - generic [ref=f3e383]:
+            - heading "Body" [level=2] [ref=f3e384]
+            - code [ref=f3e389]:
+              - generic [ref=f3e390]: "{"
+              - generic [ref=f3e391]: "\"_token\": \"C5mV4rIArZXaOOwSxaVmvoXcvNTb6Uz9Wd5XNhWc\","
+              - generic [ref=f3e392]: "\"components\": ["
+              - generic [ref=f3e393]: "{"
+              - generic [ref=f3e394]: "\"snapshot\": \"{\"data\":{\"record\":null,\"data\":[{\"file_path\":[{\"c06fc6cd-e4b7-4e26-af7f-c126df5ee826\":[\"livewire-file:o4sUFZZz9CmTlk4f9SisqUypj31OWfnHT8Ncksye.pdf\",{\"s\":\"fil\"}]},{\"s\":\"arr\"}],\"filename\":\"GPC - GESTu00c3O PATRIMONIAL NO COMAER 2026.pdf\",\"original_filename\":\"GPC - GESTu00c3O PATRIMONIAL NO COMAER 2026.pdf\",\"tags\":[[\"GPC - GESTu00c3O PATRIMONIAL NO COMAER 2026.pdf\"],{\"s\":\"arr\"}],\"content\":null},{\"s\":\"arr\"}],\"previousUrl\":\"http://localhost:8000/admin/documents/create\",\"isCreating\":false,\"mountedActions\":[[],{\"s\":\"arr\"}],\"defaultAction\":null,\"defaultActionArguments\":null,\"defaultActionContext\":null,\"defaultTableAction\":null,\"defaultTableActionRecord\":null,\"defaultTableActionArguments\":null,\"componentFileAttachments\":[[],{\"s\":\"arr\"}],\"areSchemaStateUpdateHooksDisabledForTesting\":false,\"discoveredSchemaNames\":[[\"form\",\"content\",\"headerWidgets\",\"footerWidgets\"],{\"s\":\"arr\"}],\"parentRecord\":null,\"savedDataHash\":null},\"memo\":{\"id\":\"D4wYU8PzZJrXk9lbzpF3\",\"name\":\"AppFilamentAdminResourcesDocumentsPagesCreateDocument\",\"path\":\"admin/documents/create\",\"method\":\"GET\",\"release\":\"a-a-a\",\"children\":[],\"scripts\":[],\"assets\":[],\"errors\":[],\"locale\":\"en\",\"islands\":[]},\"checksum\":\"ad3babe22d85cc7ea7719fb979966911fe06548d442a04f67e2c766cb8ad6573\"}\","
+              - generic [ref=f3e395]: "\"updates\": [],"
+              - generic [ref=f3e396]: "\"calls\": ["
+              - generic [ref=f3e397]: "{"
+              - generic [ref=f3e398]: "\"method\": \"create\","
+              - generic [ref=f3e399]: "\"params\": [],"
+              - generic [ref=f3e400]: "\"metadata\": []"
+              - generic [ref=f3e401]: "}"
+              - generic [ref=f3e402]: "]"
+              - generic [ref=f3e403]: "}"
+              - generic [ref=f3e404]: "]"
+              - generic [ref=f3e405]: "}"
+          - generic [ref=f3e406]:
+            - heading "Routing" [level=2] [ref=f3e407]
+            - generic [ref=f3e408]:
+              - generic [ref=f3e409]:
+                - generic [ref=f3e410]: controller
+                - generic [ref=f3e412]: Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate
+              - generic [ref=f3e413]:
+                - generic [ref=f3e414]: route name
+                - generic [ref=f3e416]: default-livewire.update
+              - generic [ref=f3e417]:
+                - generic [ref=f3e418]: middleware
+                - generic [ref=f3e420]: web, Livewire\Mechanisms\HandleRequests\RequireLivewireHeaders
+          - generic [ref=f3e421]:
+            - heading "Routing parameters" [level=2] [ref=f3e422]
+            - generic [ref=f3e423]: // No routing parameters
+        - generic [ref=f3e426]:
+          - img [ref=f3e428]
+          - img [ref=f3e3466]
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Create Document" [level=1] [ref=e49]
+        - generic [ref=e55]:
+          - generic [ref=e59]:
+            - generic [ref=e63]:
+              - heading "Upload" [level=2] [ref=e66]
+              - generic [ref=e68]:
+                - generic [ref=e71]:
+                  - generic [ref=e75]:
+                    - text: Document File
+                    - superscript [ref=e76]: "*"
+                  - group "Document File*" [ref=e78]:
+                    - generic [ref=e134]:
+                      - button "Drag & Drop your files or Browse"
+                      - list [ref=e138]:
+                        - listitem [ref=e141]:
+                          - group "GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e142]:
+                            - generic [ref=e143]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                            - generic [ref=e144]:
+                              - button "Remove" [ref=e147]:
+                                - img [ref=e148]
+                                - generic [ref=e150]: Remove
+                              - generic:
+                                - generic: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                                - generic: 862 KB
+                              - generic:
+                                - generic: Upload complete
+                                - generic: tap to undo
+                      - alert [ref=e139]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf Upload complete
+                - generic [ref=e83]:
+                  - generic [ref=e87]:
+                    - text: Filename
+                    - superscript [ref=e88]: "*"
+                  - textbox "Filename*" [ref=e92]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                - generic [ref=e95]:
+                  - generic [ref=e99]:
+                    - text: Original filename
+                    - superscript [ref=e100]: "*"
+                  - textbox "Original filename*" [ref=e104]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+            - generic [ref=e108]:
+              - heading "Metadata" [level=2] [ref=e111]
+              - generic [ref=e116]:
+                - generic [ref=e120]: Tags
+                - generic [ref=e124]:
+                  - combobox "Tags" [ref=e125]
+                  - generic [ref=e153]:
+                    - generic [ref=e155]: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf
+                    - 'button "Delete: GPC - GESTÃO PATRIMONIAL NO COMAER 2026.pdf" [ref=e156] [cursor=pointer]':
+                      - img [ref=e157]
+          - generic [ref=e130]:
+            - button "Create" [ref=e131] [cursor=pointer]:
+              - generic [ref=e132]: Create
+            - button "Create & create another" [ref=e133] [cursor=pointer]
+            - button "Cancel" [ref=e140] [cursor=pointer]
+  - generic:
+    - status

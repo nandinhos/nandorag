@@ -19,6 +19,11 @@ class Document extends Model
         'status',
         'file_path',
         'tags',
+        'progress',
+        'processed_chunks',
+        'total_chunks',
+        'error_log',
+        'queued_at',
     ];
 
     protected function casts(): array
@@ -26,6 +31,7 @@ class Document extends Model
         return [
             'status' => DocumentStatus::class,
             'tags' => 'array',
+            'queued_at' => 'datetime',
         ];
     }
 

@@ -1,0 +1,81 @@
+- generic [ref=e1]:
+  - navigation [ref=e3]:
+    - button "Expand sidebar" [ref=e4] [cursor=pointer]:
+      - img [ref=e5]
+    - button "User menu" [ref=e10] [cursor=pointer]:
+      - img "Avatar of Nando" [ref=e11]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - link "NandoRAG" [ref=e17] [cursor=pointer]:
+        - /url: http://localhost:8000/admin
+        - generic [ref=e18]: NandoRAG
+      - navigation [ref=e19]:
+        - list [ref=e20]:
+          - listitem [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - link "Dashboard" [ref=e24] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin
+                  - img [ref=e25]
+                  - generic [ref=e27]: Dashboard
+              - listitem [ref=e28]:
+                - link "Documents" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/documents
+                  - img [ref=e30]
+                  - generic [ref=e32]: Documents
+              - listitem [ref=e33]:
+                - link "Chats" [ref=e34] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/chats
+                  - img [ref=e35]
+                  - generic [ref=e37]: Chats
+              - listitem [ref=e38]:
+                - link "Help" [ref=e39] [cursor=pointer]:
+                  - /url: http://localhost:8000/admin/help
+                  - img [ref=e40]
+                  - generic [ref=e42]: Help
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - heading "Chats" [level=1] [ref=e49]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - button "New Chat" [ref=e54] [cursor=pointer]:
+              - img [ref=e55]
+              - text: New Chat
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - button "hope" [ref=e59] [cursor=pointer]
+                - generic [ref=e60]:
+                  - button
+                  - button
+              - generic [ref=e63]:
+                - button "Teste" [ref=e64] [cursor=pointer]
+                - generic [ref=e65]:
+                  - button
+                  - button
+          - generic [ref=e68]:
+            - generic [ref=e70]:
+              - heading "hope" [level=3] [ref=e71]
+              - paragraph [ref=e72]: All documents
+            - generic [ref=e73]:
+              - paragraph [ref=e77]: quais os tipos de gestão existentes da FAB
+              - generic [ref=e79]:
+                - generic [ref=e80]:
+                  - paragraph [ref=e81]: "Segundo o Manual do Gestor de Registro, as três modalidades de gestão dos bens patrimoniais da FAB são:"
+                  - list [ref=e82]:
+                    - listitem [ref=e83]:
+                      - strong [ref=e84]: Gestão de Consumo
+                      - text: ": É a modalidade de gestão que se aplica aos bens de consumo, cuja vida útil é curta e não pode ser ampliada com manutenção ou reparos."
+                    - listitem [ref=e85]:
+                      - strong [ref=e86]: Gestão de Reparável
+                      - text: ": É a modalidade de gestão que se aplica aos bens que podem ser reparados ou substituídos quando o valor recuperável for inferior ao valor de aquisição."
+                    - listitem [ref=e87]:
+                      - strong [ref=e88]: Gestão de Imóvel
+                      - text: ": É a modalidade de gestão que se aplica aos bens imóveis, como edifícios, terrenos, veículos e outros objetos fixos."
+                  - paragraph [ref=e89]: Essas três modalidades de gestão são fundamentais para a Administração da FAB, pois permitem a otimização do uso dos recursos e a garantia de que os bens patrimoniais sejam mantidos em condições adequadas.
+                - group [ref=e90]:
+                  - generic "10 source(s)" [ref=e91]
+            - generic [ref=e93]:
+              - textbox "Type your message..." [active] [ref=e94]
+              - button "Send" [ref=e95] [cursor=pointer]
+  - generic:
+    - status
